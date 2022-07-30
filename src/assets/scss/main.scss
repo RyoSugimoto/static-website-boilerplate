@@ -1,0 +1,52 @@
+@use './reset';
+@use './variables';
+@use './mixins' as *;
+@use './fonts';
+// @use './tailwindcss';
+
+/**
+ * Default
+ */
+
+html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family-jp-sans);
+}
+
+body {
+
+}
+
+span.icon {
+  display: inline-block;
+  background: #fff;
+  width: 120px;
+
+  svg {
+    display: block;
+    height: auto;
+    stroke: #933;
+    stroke-width: 1px;
+    width: 100%;
+  }
+}
+
+/**
+ *
+ */
+
+.global-navigation {
+  font-family: var(--font-family-display);
+  ul {
+    display: flex;
+    li {
+      & + li {
+        margin-left: 2em;
+      }
+      a {
+
+      }
+    }
+  }
+}

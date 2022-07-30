@@ -1,0 +1,61 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "browser-sync start --server dist --watch dist/*.html dist/*.css dist/*.js --no-open",
+    "dev": "run-s build watch",
+    "build": "run-s cleanup build:pug prettier:html build:css build:js build:image copy:static copy:video archive",
+    "watch": "run-p watch:pug watch:css watch:js watch:image start",
+    "cleanup": "rimraf \"dist/**/*\"",
+    "build:pug": "pug src/pages --basedir src --out dist --obj scripts/pug-init.cjs --pretty",
+    "watch:pug": "chokidar \"src/**/*.{pug,html}\" -c \"pnpm run build:pug\"",
+    "prettier:html": "prettier \"dist/**/*.html\" --write",
+    "build:sass": "sass src/assets/scss:dist/assets/css --no-source-map",
+    "run:postcss": "postcss \"dist/**/*.css\" --base dist --dir dist --no-map",
+    "build:css": "run-s build:sass run:postcss",
+    "watch:css": "chokidar \"src/**/*.scss\" -c \"pnpm run build:css\"",
+    "build:js": "esbuild src/assets/js/main.js --outdir=dist/assets/js --bundle --minify",
+    "watch:js": "chokidar \"src/**/*.js\" -c \"pnpm run build:js\"",
+    "min:image": "node scripts/min-image.mjs src/assets/images dist/assets/images",
+    "build:webp": "node scripts/build-webp.mjs src/assets/images dist/assets/images",
+    "build:image": "run-s min:image build:webp",
+    "watch:image": "chokidar \"src/assets/images/**/*.{jpg,jpeg.png,gif}\" -c \"pnpm run build:image\"",
+    "copy:static": "cpx \"static/**/*\" dist",
+    "copy:video": "cpx \"src/assets/videos/**/*\" dist/assets/videos",
+    "archive": "node scripts/archive.mjs \"dist/**/*\" archive.zip"
+  },
+  "license": "UNLICENSED",
+  "browserslist": [
+    "> 1%, not dead"
+  ],
+  "devDependencies": {
+    "archiver": "^5.3.1",
+    "browser-sync": "^2.27.10",
+    "chokidar-cli": "^3.0.0",
+    "cpx": "^1.5.0",
+    "cssnano": "^5.1.12",
+    "dotenv": "^16.0.1",
+    "esbuild": "^0.14.50",
+    "imagemin": "^8.0.1",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "imagemin-svgo": "^10.0.1",
+    "imagemin-webp": "^7.0.0",
+    "jstransformer-markdown-it": "^3.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^10.0.0",
+    "postcss-preset-env": "^7.7.2",
+    "prettier": "^2.7.1",
+    "pug-cli": "^1.0.0-alpha6",
+    "rimraf": "^3.0.2",
+    "sass": "^1.54.0",
+    "tailwindcss": "^3.1.6"
+  },
+  "dependencies": {
+    "mdn-polyfills": "^5.20.0",
+    "object-fit-images": "^3.2.4",
+    "wicg-inert": "^3.1.2"
+  }
+}

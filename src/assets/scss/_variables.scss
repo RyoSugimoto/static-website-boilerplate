@@ -1,0 +1,77 @@
+@use './mixins' as *;
+
+:root {
+  // Colors
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  // Color schemes
+
+  --bg-color: var(--color-white);
+  --text-color: var(--color-black);
+
+  @include dark {
+    --bg-color: var(--color-black);
+    --text-color: var(--color-white);
+  }
+
+  // Font families
+
+  --font-family-sans:
+  "Helvetica Neue",
+  Arial,
+  "Noto Sans",
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+  "Noto Color Emoji",
+  sans-serif;
+
+  --font-family-serif:
+  "Times New Roman",
+  Times,
+  Georgia,
+  Cambria,
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+  "Noto Color Emoji",
+  serif;
+
+  --font-family-jp-sans:
+  "游ゴシック体",
+  YuGothic, "Yu Gothic",
+  "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro",
+  "メイリオ", Meiryo,
+  "MS Pゴシック", "MS PGothic",
+  "Helvetica Neue",
+  Arial,
+  "Noto Sans",
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+  "Noto Color Emoji",
+  sans-serif;
+
+  --font-family-jp-serif:
+  "游明朝体", YuMincho, "Yu Mincho",
+  "ヒラギノ明朝 Pro", "Hiragino Mincho Pro",
+  "MS P明朝", "MS PMincho",
+  "Times New Roman",
+  Times,
+  Georgia,
+  Cambria,
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+  "Noto Color Emoji",
+  serif;
+
+  --font-family-display: var(--font-family-sans);
+
+  // Font weights
+
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "home",
+    "label": "Home",
+    "url": "/",
+    "isExternal": false
+  },
+  {
+    "slug": "about",
+    "label": "About",
+    "url": "/about/",
+    "isExternal": false
+  },
+  {
+    "slug": "works",
+    "label": "Works",
+    "url": "/works/",
+    "isExternal": false
+  },
+  {
+    "slug": "contact",
+    "label": "Contact",
+    "url": "/contact/",
+    "isExternal": false
+  }
+]

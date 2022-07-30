@@ -1,0 +1,51 @@
+extends /config.pug
+
+block layout
+
+  -
+    // Page props
+    let title = `${Config.title}`
+    let root = '.'
+    let description = `${Config.description}`
+    let keywords = `${Config.keywords.join(',')}`
+    let url = `${Config.getUrl()}`
+
+  block variable
+
+  -
+    let assetPath = `${root}/assets`
+
+  doctype html
+  html(lang=`${Config.language}`)
+    head
+      meta(charset=`${Config.charset}`)
+      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+      //- Favicon
+
+      //- Assets
+      link(rel="stylesheet", href=`${assetPath}/css/main.css?${new Date().getTime()}`)
+      script(defer, src=`${assetPath}/js/main.js?${new Date().getTime()}`)
+      //- SEO
+      title #{title}
+      meta(name='description', content=`${description}`)
+      meta(name='keywords', content=`${keywords}`)
+      link(rel="canonical", href=`${url}`)
+      //- OGP
+
+      //- Theme colors
+      meta(name='theme-color', media='(prefers-color-scheme: light)', content=`${THEME_COLOR_LIGHT}`)
+      meta(name='theme-color', media='(prefers-color-scheme: dark)', content=`${THEME_COLOR_DARK}`)
+      //- Tags in head
+      include /tags/google-fonts.html
+      include /tags/gtm-in-head.html
+      //- Slot
+      block head
+    body
+      //- Tags in body
+      include /tags/gtm-in-body.html
+      //- Page
+      .wrapper
+        include /template-parts/header.pug
+        main.main#main
+          block main
+        include /template-parts/footer.pug
