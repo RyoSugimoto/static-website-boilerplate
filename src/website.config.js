@@ -8,7 +8,7 @@ const config = {
   description: 'This project is for static websites.',
   keywords: ['boilerplate', 'static', 'website'],
   copyright: '© 2022 xxxx',
-  themeColors: {
+  themeColor: {
     light: 'white',
     dark: 'black'
   },

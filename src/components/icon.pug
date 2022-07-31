@@ -1,2 +1,27 @@
-mixin icon(name)
-  span.icon !{getIcon(name)}
+mixin icon(name, size='1em', color='currentColor', strokeWidth='1.5px')
+  span.icon-wrapper(style=`
+    --icon-width: ${size};
+    --icon-stroke: ${color};
+    --icon-stroke-width: ${strokeWidth};
+  `) !{getIcon(name)}
+
+style.
+  :root {
+    --icon-width: 1em;
+    --icon-height: auto;
+    --icon-stroke-width: 1.5px;
+    --icon-stroke: currentColor;
+  }
+
+  .icon-wrapper {
+    display: inline-block;
+    line-height: 1;
+    width: var(--icon-width);
+    & svg {
+      display: block;
+      height: var(--icon-height);
+      stroke: var(--icon-stroke);
+      stroke-width: var(--icon-stroke-width);
+      width: 100%;
+    }
+  }

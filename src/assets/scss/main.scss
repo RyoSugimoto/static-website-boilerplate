@@ -1,11 +1,12 @@
 @use './reset';
 @use './variables';
-@use './mixins' as *;
+@use './utilities' as *;
+@use './settings';
 @use './fonts';
-// @use './tailwindcss';
+// @use './tailwindcss'
 
 /**
- * Default
+ * 要素のデフォルトスタイル
  */
 
 html {
@@ -14,26 +15,8 @@ html {
   font-family: var(--font-family-jp-sans);
 }
 
-body {
-
-}
-
-span.icon {
-  display: inline-block;
-  background: #fff;
-  width: 120px;
-
-  svg {
-    display: block;
-    height: auto;
-    stroke: #933;
-    stroke-width: 1px;
-    width: 100%;
-  }
-}
-
 /**
- *
+ * レイアウト要素のスタイル
  */
 
 .global-navigation {
@@ -45,7 +28,8 @@ span.icon {
         margin-left: 2em;
       }
       a {
-
+        color: inherit;
+        text-decoration: none;
       }
     }
   }

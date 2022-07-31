@@ -1,51 +1,73 @@
-extends /config.pug
+-
+  // Page props
+  let title = `${Config.title}`
+  let root = '.'
+  let description = `${Config.description}`
+  let keywords = `${Config.keywords.join(',')}`
+  let url = `${Config.getUrl()}`
+  let ogImageUrl = `${root}/ogp.jpg`
+  let assetPath = `${root}/assets`
 
-block layout
+block variable
 
-  -
-    // Page props
-    let title = `${Config.title}`
-    let root = '.'
-    let description = `${Config.description}`
-    let keywords = `${Config.keywords.join(',')}`
-    let url = `${Config.getUrl()}`
+doctype html
+html(lang=`${Config.language}`)
+  head(prefix='og: https://ogp.me/ns#')
+    meta(charset=`${Config.charset}`)
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
-  block variable
+    //- Favicon
+    link(ref='manifest', href=`${root}/manifest.webmanifest`)
+    link(ref='icon', href=`${root}/favicon.ico`)
+    link(ref='icon', href=`${root}/favicon.svg`, type='image/svg+xml', sizes='any')
+    link(ref='apple-touch-icon', href=`${root}/apple-touch-icon.png`)
 
-  -
-    let assetPath = `${root}/assets`
+    //- Tags in head
+    include /tags/google-fonts.html
+    include /tags/gtm-in-head.html
 
-  doctype html
-  html(lang=`${Config.language}`)
-    head
-      meta(charset=`${Config.charset}`)
-      meta(name='viewport', content='width=device-width, initial-scale=1.0')
-      //- Favicon
+    //- polyfills
+    include /tags/polyfill-io.html
+    include /tags/ie-11-custom-properties.html
 
-      //- Assets
-      link(rel="stylesheet", href=`${assetPath}/css/main.css?${new Date().getTime()}`)
-      script(defer, src=`${assetPath}/js/main.js?${new Date().getTime()}`)
-      //- SEO
-      title #{title}
-      meta(name='description', content=`${description}`)
-      meta(name='keywords', content=`${keywords}`)
-      link(rel="canonical", href=`${url}`)
-      //- OGP
+    //- Assets
+    link(rel="stylesheet", href=`${assetPath}/css/main.css?${new Date().getTime()}`)
+    script(defer, src=`${assetPath}/js/main.js?${new Date().getTime()}`)
 
-      //- Theme colors
-      meta(name='theme-color', media='(prefers-color-scheme: light)', content=`${THEME_COLOR_LIGHT}`)
-      meta(name='theme-color', media='(prefers-color-scheme: dark)', content=`${THEME_COLOR_DARK}`)
-      //- Tags in head
-      include /tags/google-fonts.html
-      include /tags/gtm-in-head.html
-      //- Slot
-      block head
-    body
-      //- Tags in body
-      include /tags/gtm-in-body.html
-      //- Page
-      .wrapper
-        include /template-parts/header.pug
-        main.main#main
-          block main
-        include /template-parts/footer.pug
+    //- SEO
+    title #{title}
+    meta(name='description', content=`${description}`)
+    meta(name='keywords', content=`${keywords}`)
+    link(rel="canonical", href=`${url}`)
+
+    //- OGP
+    meta(property='og:url', content=`${url}`)
+    meta(property='og:type', content=`website`)
+    meta(property='og:title', content=`${title}`)
+    meta(property='og:description', content=`${description}`)
+    meta(property='og:site_name', content=`${Config.name}`)
+    meta(property='og:image', content=`${ogImageUrl}`)
+
+    //- Theme colors
+    meta(name='theme-color', media='(prefers-color-scheme: light)', content=`${Config.themeColor.light}`)
+    meta(name='theme-color', media='(prefers-color-scheme: dark)', content=`${Config.themeColor.dark}`)
+
+    //- Load mixin
+    include /components/image.pug
+    include /components/icon.pug
+    include /components/menu.pug
+    include /components/article.pug
+
+    //- Slot
+    block head
+
+  body
+    //- Tags in body
+    include /tags/gtm-in-body.html
+
+    //- Page
+    .wrapper#wrapper
+      include /template-parts/header.pug
+      main.main#main
+        block main
+      include /template-parts/footer.pug

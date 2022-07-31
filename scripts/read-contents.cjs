@@ -36,11 +36,16 @@ const data = {
   /**
    * すべてのデータを配列形式で取得する
    * @param {string} type フォルダ名
+   * @param {Object} options オプション
    * @returns {array}
    */
-  getList(type) {
+  getList(type, options = {}) {
     if (!this[type]) return []
-    return this[type]
+    const list = this[type]
+    if (options.sort) {
+
+    }
+    return list
   }
 }
 
