@@ -3,9 +3,40 @@ extends /layouts/default.pug
 block variable
   -
     root = '.'
+    headerLayoutMode = 'fixed'
 
 block head
 
 block main
-  +article('article', 'greeting')
-  +icon('brand-github')
+  .hero
+    .hero__content
+      h1.hero__copy
+        +cushion The Boilerplate For A Static Website.
+      p
+        +cushion 静的ウェブサイトを制作するときの雛形。
+    .hero__bg
+      +image(`${assetPath}/images/mountain.jpeg`, 'ビルの写真')(loading='lazy')
+  +spacer('2rem')
+  +container()
+    +code(`<script>
+const aaaaa = 123
+const get = () => {
+  console.log(いちにさん)
+  return {}
+}
+</script>`)
+
+  +container('', '768px')()
+    +heading(1, '01')(id='what-is-heading') What is
+    +icon('brand-github')
+
+    +table('果物の売れ行き',
+      ['種類', '1月', '2月', '3月'],
+    [
+      ['りんご', '100', '200', '400'],
+      ['みかん', '100', '200', '400'],
+      ['ぶどう', '100', '200', '400'],
+    ])
+  +container()
+    +content('article', 'greeting')
+

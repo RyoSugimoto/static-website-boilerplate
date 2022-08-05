@@ -1,0 +1,20 @@
+mixin container(padding='', maxWidth='', isCentered=true)
+  -
+    const baseClass = 'component-brand-container'
+  div(class=`${baseClass}${isCentered ? ` ${baseClass}--centered` : ''}
+  `, style=`
+    ${maxWidth ? `--component-brand-container-max-width: ${maxWidth}` : ''};
+    ${padding ? `--component-brand-container-padding: ${padding}` : ''};
+  `)&attributes(attributes)
+    block
+
+style.
+  .component-brand-container {
+    max-width: var(--component-brand-container-max-width, none);
+    padding: var(--component-brand-container-padding, 2rem);
+  }
+
+  .component-brand-container--centered {
+    margin-right: auto;
+    margin-left: auto;
+  }

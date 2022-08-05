@@ -7,11 +7,12 @@
   let url = `${Config.getUrl()}`
   let ogImageUrl = `${root}/ogp.jpg`
   let assetPath = `${root}/assets`
+  let headerLayoutMode = 'sticky'
 
 block variable
 
 doctype html
-html(lang=`${Config.language}`)
+html(lang=`${Config.language}`, data-header-layout-mode=`${headerLayoutMode}`)
   head(prefix='og: https://ogp.me/ns#')
     meta(charset=`${Config.charset}`)
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
@@ -52,11 +53,19 @@ html(lang=`${Config.language}`)
     meta(name='theme-color', media='(prefers-color-scheme: light)', content=`${Config.themeColor.light}`)
     meta(name='theme-color', media='(prefers-color-scheme: dark)', content=`${Config.themeColor.dark}`)
 
-    //- Load mixin
-    include /components/image.pug
-    include /components/icon.pug
-    include /components/menu.pug
-    include /components/article.pug
+    //- Base components
+    include /components/base/spacer.pug
+    include /components/base/table.pug
+    include /components/base/cushion.pug
+    include /components/base/menu.pug
+    include /components/base/icon.pug
+    include /components/base/image.pug
+    include /components/base/content.pug
+    include /components/base/code.pug
+
+    //- Brand components
+    include /components/brand/heading.pug
+    include /components/brand/container.pug
 
     //- Slot
     block head

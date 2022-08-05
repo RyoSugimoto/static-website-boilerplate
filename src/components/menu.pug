@@ -1,9 +1,0 @@
-mixin menu(slug='', classes='')
-  -
-    let items = Data.get('menu', slug)
-
-  nav(data-menu-slug=slug, class=`menu ${classes}`)
-    ul.nav__list
-      each item in items
-        li.nav__item(data-menu-item-slug=`${item.slug}`)
-          a(href=`${item.url}`) #{item.label}

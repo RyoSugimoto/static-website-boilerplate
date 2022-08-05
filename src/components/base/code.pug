@@ -1,0 +1,14 @@
+mixin code(code)
+  .component-code
+    pre
+      code #{code}
+
+style.
+  .component-code {
+    background: #000;
+    color: #fff;
+    padding: 1rem;
+    & pre {
+      white-space: pre-wrap;
+    }
+  }

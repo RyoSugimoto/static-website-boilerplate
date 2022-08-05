@@ -1,0 +1,23 @@
+mixin icon(name)
+  span.component-icon&attributes(attributes) !{getIcon(name)}
+
+style.
+  :root {
+    --component-icon-width: 1em;
+    --component-icon-height: auto;
+    --component-icon-stroke-width: 1.5px;
+    --component-icon-stroke: currentColor;
+  }
+
+  .component-icon {
+    display: inline-block;
+    line-height: 1;
+    width: var(--component-icon-width);
+    & svg {
+      display: block;
+      height: var(--component-icon-height);
+      stroke: var(--component-icon-stroke);
+      stroke-width: var(--component-icon-stroke-width);
+      width: 100%;
+    }
+  }

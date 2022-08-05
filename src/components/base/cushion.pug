@@ -1,0 +1,20 @@
+//-
+  いわゆる座布団スタイルを適用する。
+mixin cushion()
+  span.component-cushion&attributes(attributes)
+    block
+
+style.
+  :root {
+    --cushion-bg: black;
+    --cushion-color: white;
+    --cushion-padding: .25em;
+  }
+
+  .component-cushion {
+    background: var(--cushion-bg);
+    box-decoration-break: clone;
+    color: var(--cushion-color);
+    display: inline;
+    padding: var(--cushion-padding);
+  }

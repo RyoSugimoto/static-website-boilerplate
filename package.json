@@ -9,7 +9,7 @@
     "cleanup": "rimraf \"dist/**/*\"",
     "build:html": "run-s build:pug run:postcss:html prettier:html",
     "watch:html": "chokidar \"src/**/*.{pug,html,md,config.js}\" -c \"pnpm run build:html\"",
-    "build:pug": "pug src/pages --basedir src --out dist --obj scripts/pug-init.cjs --pretty",
+    "build:pug": "pug src/pages --basedir src --out dist --obj scripts/pug-init.js --pretty",
     "prettier:html": "prettier \"dist/**/*.html\" --write",
     "build:sass": "sass src/assets/scss:dist/assets/css --no-source-map",
     "build:sass:dev": "sass src/assets/scss:dist/assets/css",
@@ -32,7 +32,7 @@
   },
   "license": "UNLICENSED",
   "browserslist": [
-    "> 1%, not dead"
+    "> 1% in JP, not dead"
   ],
   "devDependencies": {
     "archiver": "^5.3.1",
@@ -42,6 +42,7 @@
     "cssnano": "^5.1.12",
     "dotenv": "^16.0.1",
     "esbuild": "^0.14.50",
+    "image-size": "^1.0.2",
     "imagemin": "^8.0.1",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^10.0.0",

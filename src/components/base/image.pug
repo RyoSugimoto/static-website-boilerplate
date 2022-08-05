@@ -1,0 +1,38 @@
+//-
+  img要素を出力する。
+  +image(`${assetPath}/images/name.jpg`, 'description')
+
+  サブフォルダを参照する場合は、srcに、画像ディレクトリ（website.config.jsで設定）までのパスと、そこから画像までのパスを配列に格納して指定。
+  +image([`${assetPath}/images`, 'sub-dir/name.jpg'], 'description')
+
+mixin image(src='', alt='', webp=true, modifier='')
+  -
+    const regex = /(^.*\/|^)(.+)\.(jpe?g|png|gif|webp)(\?.*)?$/ // $1: path $2: file $3: ext $4: query
+    let imageFileName = ''
+    if (Array.isArray(src)) {
+      imageFileName = src[1]
+      src = src.join('/')
+    } else {
+      imageFileName = src.replace(regex, '$2.$3')
+    }
+    const webpSrc = src.replace(regex, '$1$2.webp$4')
+    const ext = src.replace(regex, '$3')
+    // imageData()で幅と高さを取得する。ファイルが見つからない場合はfalseを取得。
+    const imageData = getImageData(imageFileName)
+  //- ソースフォルダ以下に画像が見つからなかった場合は、画像が見つからなかった旨を表示。
+  if imageData.isError
+    div
+      strong #{imageData.message}
+  else
+    -
+      // widthとheightを「直接渡された値 > imageData()で取得した値 > 空」の優先順で設定。
+      const width = attributes.width || imageData.width || ''
+      const height = attributes.height || imageData.height || ''
+    //- webpオプションがtrueの場合は、JPEGとPNGは同名のWebpを優先して表示し、フォールバックとして元画像を設定。
+    if webp && (/jpe?g|png/.test(ext))
+      picture
+        source(srcset=webpSrc, type="image/webp")
+        img.component-image(src=src, alt=alt, width=width, height=height)&attributes(attributes)
+    //- webpオプションがfalseの場合は、imgのみを表示
+    else
+      img.component-image(src=src, alt=alt, width=width, height=height)&attributes(attributes)

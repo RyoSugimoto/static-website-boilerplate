@@ -1,0 +1,15 @@
+mixin table(caption, head=[], data=[])
+  table.component-table&attributes(attributes)
+    if caption
+      caption #{caption}
+    if Array.isArray(head) && head.length
+      thead
+        tr
+          each th in head
+            th !{th}
+    if Array.isArray(data) && data.length
+      tbody
+        each row in data
+          tr
+            each td in row
+              td !{td}

@@ -1,3 +1,5 @@
+const path = require('path')
+
 const config = {
   name: 'Website Boilerplate',
   domain: 'websiteboilerplate.com',
@@ -12,7 +14,10 @@ const config = {
     light: 'white',
     dark: 'black'
   },
-  getUrl() { return `${this.protocol}://${this.domain}` }
+  getUrl() { return `${this.protocol}://${this.domain}` },
+  imageDirectory: 'src/assets/images',
+  iconDirectory: 'src/icons',
+  contentDirectory: 'src/contents',
 }
 
 module.exports = config

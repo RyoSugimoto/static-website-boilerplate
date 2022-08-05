@@ -1,0 +1,17 @@
+//-
+  いわゆる座布団スタイルを適用する。
+mixin spacer(size='1rem')
+  hr.component-spacer(style=`
+    --component-spacer-height: ${size};
+  `)&attributes(attributes)
+
+style.
+  .component-spacer {
+    background: transparent;
+    border: 0;
+    color: transparent;
+    display: block;
+    height: var(--component-spacer-height);
+    margin: 0;
+    padding: 0;
+  }

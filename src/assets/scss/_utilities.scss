@@ -75,6 +75,14 @@
 }
 
 /**
+ * <wbr>でテキストの改行可能位置をコントロールできるようにする。
+ */
+@mixin control-new-line {
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+/**
  * アクセシビリティに配慮して要素を不可視にする。
  */
 @mixin visually-hidden {

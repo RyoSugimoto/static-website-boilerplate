@@ -1,4 +1,5 @@
 header#header.header
-  div.logo Website Logo
-
-  +menu('main-menu-items', 'global-navigation')
+  .header__inner
+    .header__logo Website Logo
+    .header__navigation
+      +menu('main-menu-items')(class='global-navigation')

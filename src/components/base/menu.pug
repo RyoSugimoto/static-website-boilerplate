@@ -1,0 +1,8 @@
+mixin menu(slug='')
+  -
+    let items = getContent(`menu/${slug}.json`)
+
+  ul.component-menu(data-menu-slug=slug)&attributes(attributes)
+    each item in items.content
+      li.component-menu__item(data-menu-item-slug=`${item.slug}`)
+        a(href=`${item.url}`) #{item.label}

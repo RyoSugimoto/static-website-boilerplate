@@ -1,0 +1,5 @@
+mixin content(type, slug)
+  .component-content&attributes(attributes)
+    -
+      const contentData = getContent(`${type}/${slug}.md`)
+    .article__content !{contentData.content}

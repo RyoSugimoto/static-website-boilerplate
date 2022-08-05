@@ -12,7 +12,8 @@ module.exports = ctx => ({
         'nesting-rules': true,
       },
       // カスタムプロパティの参照先ファイル
-      importFrom: path.resolve(__dirname, 'dist/assets/css/main.css'),
+      // importFromは廃止される予定なので無効化
+      // importFrom: path.resolve(__dirname, 'dist/assets/css/main.css'),
     },
     // Tailwind CSSでNestingを有効化
     // https://tailwindcss.com/docs/using-with-preprocessors#nesting

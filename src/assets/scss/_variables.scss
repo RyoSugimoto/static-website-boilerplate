@@ -1,4 +1,5 @@
 @use './utilities' as *;
+@use './settings';
 
 :root {
   // Colors
@@ -12,8 +13,8 @@
   --text-color: var(--color-black);
 
   @include dark {
-    --bg-color: var(--color-black);
-    --text-color: var(--color-white);
+    // --bg-color: var(--color-black);
+    // --text-color: var(--color-white);
   }
 
   // Font families
@@ -70,8 +71,19 @@
 
   --font-family-display: var(--font-family-sans);
 
+  --font-family-monospace: "Source Code Pro", "Monaco", "Courier New", "ＭＳ 明朝", "MS Mincho", "Osaka-Mono", monospace;
+
+  // Font size
+
+  --font-size-root: clamp(16px, calc(16 / 640 * 100vw), 16px);
+
   // Font weights
 
   --font-weight-normal: 400;
   --font-weight-bold: 700;
+
+  // Wrapper
+
+  --wrapper-max-width: #{map-get(settings.$screen-widths, 2xl)};
+  --wrapper-min-width: #{map-get(settings.$screen-widths, xs)};
 }
