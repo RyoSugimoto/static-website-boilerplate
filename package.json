@@ -13,7 +13,6 @@
     "prettier:html": "prettier \"dist/**/*.html\" --write",
     "build:sass": "sass src/assets/scss:dist/assets/css --no-source-map",
     "build:sass:dev": "sass src/assets/scss:dist/assets/css",
-    "test:sass": "sass tests/test.scss",
     "run:postcss": "postcss \"dist/**/*.css\" --base dist --dir dist --no-map",
     "run:postcss:html": "postcss \"dist/**/*.html\" --base dist --dir dist",
     "build:css": "run-s build:sass run:postcss",
@@ -26,7 +25,7 @@
     "build:webp": "node scripts/build-webp.mjs src/assets/images dist/assets/images",
     "build:image": "run-s min:image build:webp",
     "watch:image": "chokidar \"src/assets/images/**/*.{jpg,jpeg.png,gif}\" -c \"pnpm run build:image\"",
-    "copy:static": "cpx \"static/**/*\" dist",
+    "copy:static": "cpx \"src/static/**/*\" dist",
     "copy:video": "cpx \"src/assets/videos/**/*\" dist/assets/videos",
     "archive": "node scripts/archive.mjs \"dist/**/*\" website.zip"
   },

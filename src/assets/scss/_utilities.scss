@@ -2,9 +2,31 @@
 
 // ミックスインや関数を定義するファイル
 
-/**
- * アスペクトに応じた高さを設定する。
- */
+//
+// 長い単語を改行する。
+//
+@mixin break-word( $break-all: false ) {
+  overflow-wrap : break-word;
+  word-wrap : break-word;
+  @if $break-all {
+    word-break : break-all;
+  }
+}
+
+//
+// スクロールバーを不可視にする。
+//
+@mixin invisible-scrollbar() {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+//
+// アスペクトに応じた高さを設定する。
+//
 @mixin aspect-ratio($width, $height) {
   position: relative;
   display: block;
@@ -12,11 +34,11 @@
   padding-top: math.div($height, $width) * 100%;
 }
 
-/**
- * アスペクト比を設定した親要素のサイズに合わせて画像のサイズを調整する。
- * @param object-fit $fit
- * @param object-position $position
- */
+//
+// アスペクト比を設定した親要素のサイズに合わせて画像のサイズを調整する。
+// @param object-fit $fit
+// @param object-position $position
+//
 @mixin aspect-ratio-image($fit: cover, $position: center) {
   height: 100%;
   left: 0;
@@ -27,10 +49,10 @@
   width: 100%;
 }
 
-/**
- * アスペクト比に応じた高さを最低値として設定する。
- * 子要素の高さに応じて高さは伸びる。
- */
+//
+// アスペクト比に応じた高さを最低値として設定する。
+// 子要素の高さに応じて高さは伸びる。
+//
 @mixin aspect-ratio-flexible($width, $height) {
   position: relative;
   &::before {
@@ -45,12 +67,12 @@
   }
 }
 
-/**
- * Clearfixを適用する。
- * 要素にfloatした要素が含まれる場合、
- * その要素が下にはみ出さない最低限の高さを維持する。
- * @param 'after'|'before' $position 疑似要素の種類
- */
+//
+// Clearfixを適用する。
+// 要素にfloatした要素が含まれる場合、
+// その要素が下にはみ出さない最低限の高さを維持する。
+// @param 'after'|'before' $position 疑似要素の種類
+//
 @mixin clearfix($position: after) {
   &::#{position} {
     clear: both;
@@ -59,9 +81,9 @@
   }
 }
 
-/**
- * 要素の幅を画面の幅いっぱいにする。
- */
+//
+// 要素の幅を画面の幅いっぱいにする。
+//
 @mixin full-width {
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
@@ -74,17 +96,17 @@
   font-feature-settings: "palt" 1;
 }
 
-/**
- * <wbr>でテキストの改行可能位置をコントロールできるようにする。
- */
+//
+// <wbr>でテキストの改行可能位置をコントロールできるようにする。
+//
 @mixin control-new-line {
   white-space: nowrap;
   word-break: keep-all;
 }
 
-/**
- * アクセシビリティに配慮して要素を不可視にする。
- */
+//
+// アクセシビリティに配慮して要素を不可視にする。
+//
 @mixin visually-hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -98,60 +120,60 @@
   width: 1px;
 }
 
-/**
- * 画面幅に基づくメディアクエリを設定する。
- * @contentに、画面幅が指定した幅以上場合に適用するスタイルを設定する。
- * @param length $px ブレークポイント
- */
+//
+// 画面幅に基づくメディアクエリを設定する。
+// @contentに、画面幅が指定した幅以上場合に適用するスタイルを設定する。
+// @param length $px ブレークポイント
+//
 @mixin over($px: '640px') {
   @media only screen and (min-width: $px) {
     @content;
   }
 }
 
-/**
- * 画面幅に基づくメディアクエリを設定する。
- * @contentに、画面幅が指定した幅以下場合に適用するスタイルを設定する。
- * @param length $px ブレークポイント
- */
+//
+// 画面幅に基づくメディアクエリを設定する。
+// @contentに、画面幅が指定した幅以下場合に適用するスタイルを設定する。
+// @param length $px ブレークポイント
+//
 @mixin under($px: '639px') {
   @media only screen and (max-width: $px) {
     @content;
   }
 }
 
-/**
- * ブラウザのカラースキームの基づくメディアクエリを設定する。
- * @contentに、ダークモードの場合に適用するスタイルを設定する。
- */
+//
+// ブラウザのカラースキームの基づくメディアクエリを設定する。
+// @contentに、ダークモードの場合に適用するスタイルを設定する。
+//
 @mixin dark {
   @media (prefers-color-scheme: dark) {
     @content;
   }
 }
 
-/**
- * ブラウザのカラースキームの基づくメディアクエリを設定する。
- * @contentに、ライトモードの場合に適用するスタイルを設定する。
- */
+//
+// ブラウザのカラースキームの基づくメディアクエリを設定する。
+// @contentに、ライトモードの場合に適用するスタイルを設定する。
+//
 @mixin light {
   @media (prefers-color-scheme: light) {
     @content;
   }
 }
 
-/**
- * autoprefixerで、グリッドの自動配置を有効にする場合にインクルードする。
- */
+//
+// autoprefixerで、グリッドの自動配置を有効にする場合にインクルードする。
+//
 @mixin grid-autoplace {
   /*! autoprefixer grid: autoplace */
 }
 
-/**
- * 指定したピクセル値をremに換算して返す。
- * @param length $px 換算対象
- * @param font-size $base ルート要素のフォントサイズ
- */
+//
+// 指定したピクセル値をremに換算して返す。
+// @param length $px 換算対象
+// @param font-size $base ルート要素のフォントサイズ
+//
 @function rem($px, $base: 16px) {
   @if type-of($px) != 'number' or unitless($px) {
     @warn "The unit of the argument must be a number and 'px'.";

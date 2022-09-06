@@ -75,7 +75,14 @@
 
   // Font size
 
-  --font-size-root: clamp(16px, calc(16 / 640 * 100vw), 16px);
+  --font-size-4: 8px;
+  --font-size-8: 16px;
+
+  --font-size-root: clamp(
+    var(--font-size-4),
+    calc(16 / 640 * 100vw),
+    var(--font-size-8)
+  );
 
   // Font weights
 
