@@ -1,0 +1,6 @@
+.drawer#drawer
+  .drawer__overlay(data-drawer-trigger)
+  .drawer__body
+    .drawer__inner
+      button.drawer__close(data-drawer-trigger) Close
+      +menu('main-menu-items')(class='drawer__menu')

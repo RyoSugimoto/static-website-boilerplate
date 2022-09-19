@@ -1,0 +1,9 @@
+{
+  "exclude": [
+    ".git/**",
+    "node_modules/**",
+    "bower_components/**"
+  ],
+  "sort-order-fallback": "abc",
+  "sort-order": []
+}

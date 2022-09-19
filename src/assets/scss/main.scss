@@ -12,8 +12,8 @@
 html {
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-size: var(--font-size-root);
   font-family: var(--font-family-jp-sans);
+  font-size: var(--font-size-root);
   line-height: 1.75;
   overflow-y: scroll;
 }
@@ -39,9 +39,11 @@ code {
   min-width: var(--wrapper-min-width);
 }
 
-.wrapper {
+.page-wrapper {
   @extend %container;
 }
+
+// Header
 
 .header {
   width: 100%;
@@ -57,10 +59,10 @@ code {
     top: 0;
   }
   &__inner {
-    @extend %container;
     background: var(--bg-color);
     color: var(--text-color);
     display: flex;
+    @extend %container;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1rem;
@@ -74,8 +76,8 @@ code {
 }
 
 .global-navigation {
-  font-family: var(--font-family-display);
   display: flex;
+  font-family: var(--font-family-display);
   li {
     & + li {
       margin-left: 2em;
@@ -87,9 +89,41 @@ code {
   }
 }
 
-/**
- * ヒーローイメージ
- */
+// Drawer
+
+.drawer {
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  &__overlay {
+    background: rgba(0, 0, 0, .75);
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+  &__body {
+    background: #fff;
+    height: 100%;
+    max-width: 480px;
+    overflow-y: scroll;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+  }
+  &__inner {
+    padding: 2rem;
+  }
+}
+
+// Hero
 
 .hero {
   display: grid;
@@ -107,22 +141,22 @@ code {
   &__copy {
     font-size: 2.5rem;
     font-weight: var(--font-weight-bold);
-    line-height: 1.75;
     @include proportional;
+    line-height: 1.75;
     &__cushion {
       // @include control-new-line;
     }
   }
   &__bg {
+    height: 100%;
     left: 0;
     position: absolute;
     top: 0;
-    height: 100%;
     width: 100%;
     z-index: 0;
     img {
-      object-fit: cover;
       height: 100%;
+      object-fit: cover;
       width: 100%;
     }
   }

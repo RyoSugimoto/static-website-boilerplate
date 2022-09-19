@@ -1,6 +1,7 @@
 import ObjectFitImages from 'object-fit-images'
 import 'mdn-polyfills/NodeList.prototype.forEach'
 import './libraries/modernizr-only-webp'
+import Drawer from './libraries/drawer-module'
 import { getScrollingElement, setCorrectVh, debounce } from './functions'
 
 console.log('main.js loaded')
@@ -9,8 +10,14 @@ console.log('main.js loaded')
 const elements = {
   root: document.documentElement,
   body: document.body,
-  scroll: getScrollingElement(),
+  scroll: getScrollingElement()
 }
+
+const drawer = new Drawer({
+  drawer: '#drawer',
+  switch: '[data-drawer-trigger]',
+  inert: '[data-drawer-inert]',
+})
 
 // IEのときの処理
 const isIe = document.documentMode

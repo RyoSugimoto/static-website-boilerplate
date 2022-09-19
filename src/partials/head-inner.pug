@@ -1,0 +1,38 @@
+meta(charset=`${Config.charset}`)
+meta(name='viewport', content='width=device-width, initial-scale=1.0')
+meta(name='format-detection', content='email=no,telephone=no,address=no')
+
+//- Assets
+link(rel="stylesheet", href=`${assetPath}/css/main.css?${new Date().getTime()}`)
+script(defer, src=`${assetPath}/js/main.js?${new Date().getTime()}`)
+
+//- Favicon
+link(ref='manifest', href=`${root}/manifest.webmanifest`)
+link(ref='icon', href=`${root}/favicon.ico`)
+link(ref='icon', href=`${root}/favicon.svg`, type='image/svg+xml', sizes='any')
+link(ref='apple-touch-icon', href=`${root}/apple-touch-icon.png`)
+
+//- OGP
+meta(property='og:url', content=`${Config.getUrl()}`)
+meta(property='og:type', content=`website`)
+meta(property='og:title', content=`${title}`)
+meta(property='og:description', content=`${Config.description}`)
+meta(property='og:site_name', content=`${Config.name}`)
+meta(property='og:image', content=`${root}/ogp.jpg`)
+
+//- Theme colors
+meta(name='theme-color', media='(prefers-color-scheme: light)', content=`${Config.themeColor.light}`)
+meta(name='theme-color', media='(prefers-color-scheme: dark)', content=`${Config.themeColor.dark}`)
+
+//- Tags in head
+include /tags/google-fonts.html
+include /tags/gtm-in-head.html
+
+//- polyfills
+include /tags/polyfill-io.html
+include /tags/ie-11-custom-properties.html
+
+//- SEO
+meta(name='description', content=description)
+meta(name='keywords', content=keywords)
+link(rel="canonical", href=url)
