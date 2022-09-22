@@ -15,7 +15,7 @@ link(ref='apple-touch-icon', href=`${root}/apple-touch-icon.png`)
 //- OGP
 meta(property='og:url', content=`${Config.getUrl()}`)
 meta(property='og:type', content=`website`)
-meta(property='og:title', content=`${title}`)
+meta(property='og:title', content=`${Config.title}`)
 meta(property='og:description', content=`${Config.description}`)
 meta(property='og:site_name', content=`${Config.name}`)
 meta(property='og:image', content=`${root}/ogp.jpg`)
@@ -29,8 +29,8 @@ include /tags/google-fonts.html
 include /tags/gtm-in-head.html
 
 //- polyfills
-include /tags/polyfill-io.html
-include /tags/ie-11-custom-properties.html
+//- include /tags/polyfill-io.html
+//- include /tags/ie-11-custom-properties.html
 
 //- SEO
 meta(name='description', content=description)

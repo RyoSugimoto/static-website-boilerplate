@@ -1,0 +1,23 @@
+@use './settings';
+@use './utilities' as *;
+
+// Default
+
+html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family-jp-sans);
+  font-size: var(--font-size-root);
+  line-height: 1.75;
+  overflow-y: scroll;
+}
+
+img, svg {
+  display: block;
+  height: auto;
+  width: auto;
+}
+
+code {
+  font-family: var(--font-family-monospace);
+}

@@ -16,7 +16,7 @@ const config = {
   },
   getUrl() { return `${this.protocol}://${this.domain}` },
   imageDirectory: 'src/assets/images',
-  iconDirectory: 'src/icons',
+  iconDirectory: 'src/assets/icons',
   contentDirectory: 'src/contents',
 }
 

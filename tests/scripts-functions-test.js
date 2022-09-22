@@ -1,7 +1,6 @@
 const path = require('path')
 const functions = require('../scripts/functions.js')
 
-console.log(functions.getContent('article/greeting.md'))
 console.log(functions.getContent('works/work01.json'))
 console.log(functions.getImageData('building.jpg'))
 console.log(functions.getIcon('bell'))

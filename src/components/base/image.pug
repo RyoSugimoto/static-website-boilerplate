@@ -5,8 +5,11 @@
   サブフォルダを参照する場合は、srcに、画像ディレクトリ（website.config.jsで設定）までのパスと、そこから画像までのパスを配列に格納して指定。
   +image([`${assetPath}/images`, 'sub-dir/name.jpg'], 'description')
 
-mixin image(src='', alt='', webp=true, modifier='')
+mixin image(src='', alt='', loadingLazy=true, webp=true, modifier='')
   -
+    if (loadingLazy) {
+      attributes['loading'] = 'lazy'
+    }
     const regex = /(^.*\/|^)(.+)\.(jpe?g|png|gif|webp)(\?.*)?$/ // $1: path $2: file $3: ext $4: query
     let imageFileName = ''
     if (Array.isArray(src)) {
