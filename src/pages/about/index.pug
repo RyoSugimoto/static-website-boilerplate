@@ -1,10 +1,11 @@
 extends /layouts/default.pug
 
-block variable
+block props
   -
     title = `About - ${Config.name}`
     root = '..'
     assetPath = `${root}/assets`
+    url += '/about/'
 
 block head
 

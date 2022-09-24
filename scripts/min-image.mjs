@@ -24,11 +24,11 @@ const outputDir = process.argv[3] || null
 const min = async(path) => {
   // 出力先パスを設定するために入力ディレクトリ以下のディレクトリ構造を抽出。
   const structure = path.replace(new RegExp(`^.*${inputDir}`), '')
-  const files = await imagemin([`${path}/*.{jpg,jpeg,png,gif,svg,webp}`], {
+  const files = await imagemin([`${path}/*.{jpg,jpeg,png,gif,svg,webp,avif}`], {
     destination: `${outputDir}${structure}`,
     plugins: [
       imageminMozjpeg({
-        quality: 75,
+        quality: 50,
       }),
       imageminPngquant({
         speed: 6,

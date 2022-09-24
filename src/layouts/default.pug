@@ -1,22 +1,31 @@
+//- Page properties
 -
-  // Page props
   let root = '.'
   let assetPath = `${root}/assets`
   let description = `${Config.description}`
   let keywords = `${Config.keywords.join(',')}`
   let url = `${Config.getUrl()}`
-  let headerLayoutMode = 'sticky'
+  let robots = ''
+  let title = Config.title
+  let rootClass = 'is-header-sticky no-js'
+  let bodyClass = ''
 
-block variable
+//- Overwrite page properties
+block props
 
+//- HTML
 doctype html
-html(lang=`${Config.language}`, data-header-layout-mode=`${headerLayoutMode}`)
+html(lang=`${Config.language}`, class=rootClass)
   head(prefix='og: https://ogp.me/ns#')
+    //- Load components
     include /components/_load-components.pug
+
+    //- Head settings
     include /partials/head-inner.pug
+
     block head
 
-  body
+  body(class=bodyClass)
     //- Tags in body
     include /tags/gtm-in-body.html
 
@@ -25,11 +34,14 @@ html(lang=`${Config.language}`, data-header-layout-mode=`${headerLayoutMode}`)
     //- Drawer
     include /partials/drawer.pug
 
-    //- Page
-    .page-wrapper#page-wrapper
+    //- Wrapper
+    .page-wrapper
+
       include /partials/header.pug
+
       main.main#main
         block main
+
       include /partials/footer.pug
 
     block body-end

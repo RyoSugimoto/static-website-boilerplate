@@ -1,0 +1,15 @@
+extends /layouts/default.pug
+
+block props
+  -
+    root = '..'
+    assetPath = `${root}/assets`
+    robots = 'noindex, nofollow'
+    url += '/contact/complete.html'
+    title = `Inquiry completed - ${Config.name}`
+
+block head
+
+block main
+  h1 Inquiry completed
+  div

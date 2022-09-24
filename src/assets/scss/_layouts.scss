@@ -11,12 +11,12 @@
 .header {
   width: 100%;
   z-index: 1000;
-  [data-header-layout-mode="sticky"] & {
+  .is-header-sticky & {
     left: 0;
     position: sticky;
     top: 0;
   }
-  [data-header-layout-mode="fixed"] & {
+  .is-header-fixed & {
     left: 0;
     position: fixed;
     top: 0;

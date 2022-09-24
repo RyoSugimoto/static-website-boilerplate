@@ -12,12 +12,6 @@
     "isExternal": false
   },
   {
-    "slug": "works",
-    "label": "Works",
-    "url": "/works/",
-    "isExternal": false
-  },
-  {
     "slug": "contact",
     "label": "Contact",
     "url": "/contact/",

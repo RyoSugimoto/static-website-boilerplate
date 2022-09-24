@@ -25,7 +25,7 @@ const min = async(path) => {
     destination: `${outputDir}${structure}`,
     plugins: [
       imageminWebp({
-        quality: 75,
+        quality: 50,
       }),
     ]
   })

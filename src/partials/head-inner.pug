@@ -33,6 +33,11 @@ include /tags/gtm-in-head.html
 //- include /tags/ie-11-custom-properties.html
 
 //- SEO
+if title
+  title #{title}
 meta(name='description', content=description)
 meta(name='keywords', content=keywords)
 link(rel="canonical", href=url)
+
+if robots
+  meta(name='robots', content=robots)

@@ -1,9 +1,9 @@
 extends /layouts/default.pug
 
-block variable
+block props
   -
     root = '.'
-    headerLayoutMode = 'fixed'
+    rootClass = 'is-header-fixed'
 
 block head
 
@@ -15,13 +15,14 @@ block main
       p
         +cushion 静的ウェブサイトを制作するときの雛形。
     .hero__bg
-      +image(`${assetPath}/images/mountain.jpeg`, 'ビルの写真')(loading='lazy')
+      +image(`mountain.jpeg`, 'ビルの写真')(loading='lazy')
   +spacer('2rem')
   +container()
+    +image(`illustrations/kaiju.png`, '怪獣のイラスト')(loading='lazy')
     +code(`<script>
 const aaaaa = 123
 const get = () => {
-  console.log(いちにさん)
+  console.log('いちにさん')
   return {}
 }
 </script>`)
