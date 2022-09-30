@@ -1,6 +1,51 @@
-{
-  "name": "footer",
-  "menu": [
-
-  ]
-}
+[
+  {
+    "slug": "home",
+    "label": "ホーム",
+    "url": "/",
+    "isExternal": false,
+    "isRelative": true
+  },
+  {
+    "slug": "about",
+    "label": "このサイトについて",
+    "url": "/#about",
+    "isExternal": false,
+    "isRelative": true
+  },
+  {
+    "slug": "faq",
+    "label": "よくある質問",
+    "url": "/faq/",
+    "isExternal": false,
+    "isRelative": true
+  },
+  {
+    "slug": "contact",
+    "label": "お問い合わせ",
+    "url": "/contact/",
+    "isExternal": false,
+    "isRelative": true
+  },
+  {
+    "slug": "privacy-policy",
+    "label": "個人情報の取り扱いについて",
+    "url": "/privacy-policy/",
+    "isExternal": false,
+    "isRelative": true
+  },
+  {
+    "slug": "corporate-profile",
+    "label": "会社概要",
+    "url": "/corporate-profile/",
+    "isExternal": false,
+    "isRelative": true
+  },
+  {
+    "slug": "specified-commercial-transaction-law",
+    "label": "特定商取引法に基づく表示",
+    "url": "/specified-commercial-transaction-law/",
+    "isExternal": false,
+    "isRelative": true
+  }
+]

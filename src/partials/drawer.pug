@@ -1,6 +1,17 @@
-.drawer#drawer
+.drawer#drawer(hidden)
   .drawer__overlay(data-drawer-trigger)
   .drawer__body
-    .drawer__inner
-      button.drawer__close(data-drawer-trigger) Close
-      +menu('main-menu-items')(class='drawer__menu')
+    .drawer__stack
+
+      if headerNavigationMode === 'only-drawer'
+        .drawer__header
+          .drawer__logo
+            +link(`${root}`)(aria-label="ホーム")
+              +logo()
+          .drawer__close
+            button.drawer__close(data-drawer-trigger, aria-label='メニューを閉じる')
+              span.drawer__close__icon
+              | メニューを閉じる
+
+      nav.drawer__menu
+        +menu('main-menu-items')(class='drawer-navigation')

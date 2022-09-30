@@ -3,18 +3,32 @@
     "slug": "home",
     "label": "Home",
     "url": "/",
-    "isExternal": false
+    "isExternal": false,
+    "title": "ホーム",
+    "isRelative": true
   },
   {
     "slug": "about",
     "label": "About",
-    "url": "/about/",
-    "isExternal": false
+    "url": "/#about",
+    "isExternal": false,
+    "title": "このサイトについて",
+    "isRelative": true
+  },
+  {
+    "slug": "faq",
+    "label": "FAQ",
+    "url": "/faq/",
+    "isExternal": false,
+    "title": "よくある質問",
+    "isRelative": true
   },
   {
     "slug": "contact",
     "label": "Contact",
     "url": "/contact/",
-    "isExternal": false
+    "isExternal": false,
+    "title": "お問い合わせ",
+    "isRelative": true
   }
 ]

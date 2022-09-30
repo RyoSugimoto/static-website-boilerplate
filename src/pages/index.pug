@@ -3,8 +3,7 @@ extends /layouts/default.pug
 block props
   -
     root = '.'
-    rootClass = 'is-header-fixed'
-    imagePath = `${root}/assets/images`
+    headerPosition = 'fixed' // 'relative' | 'sticky' | 'fixed'
 
 block head
 
@@ -39,4 +38,7 @@ const get = () => {
       ['みかん', '100', '200', '400'],
       ['ぶどう', '100', '200', '400'],
     ])
+
+  #about
+    h2 About
 

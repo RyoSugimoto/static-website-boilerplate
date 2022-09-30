@@ -1,0 +1,11 @@
+if (Array.isArray(breadcrumbList) && breadcrumbList.length !== 0)
+  .breadcrumb
+    ul.breadcrumb__list
+      li.breadcrumb__item.is-home
+        +link(`${root}`) ホーム
+      each item in breadcrumbList
+        li.breadcrumb__item
+          if item.url
+            +link(url) #{item.label}
+          else
+            span #{item.label || ''}

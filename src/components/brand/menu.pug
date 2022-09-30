@@ -4,5 +4,7 @@ mixin menu(slug='')
 
   ul.component-menu(data-menu-slug=slug)&attributes(attributes)
     each item in items.content
+      -
+        const href = item.isRelative ? (root || '.') + item.url : item.url
       li.component-menu__item(data-menu-item-slug=`${item.slug}`)
-        a(href=`${item.url}`) #{item.label}
+        +link(href)(target=`${item.isExternal ? '_blank' : '_self'}`, title=`${item.title || ''}`, aria-label=`${item.title || ''}`) #{item.label}

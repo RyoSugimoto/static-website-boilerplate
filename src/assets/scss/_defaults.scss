@@ -12,12 +12,25 @@ html {
   overflow-y: scroll;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 img, svg {
   display: block;
   height: auto;
   width: auto;
 }
 
+button {
+  cursor: pointer;
+}
+
 code {
   font-family: var(--font-family-monospace);
+}
+
+:focus {
+  outline: 1px dotted #999;
 }

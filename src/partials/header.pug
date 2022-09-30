@@ -1,7 +1,30 @@
-header#header.header
-  .header__inner
-    .header__logo Website Logo
-    .header__navigation
-      +menu('main-menu-items')(class='global-navigation')
-    .header__brawer
-      button.header__drawer__trigger(data-drawer-trigger) Menu
+header#global-header.global-header
+  .global-header__stack
+
+    if headerNavigationMode === 'only-drawer'
+      .global-header__logo(data-drawer-inert)
+        +link(`${root}`)(aria-label="ホーム")
+          +logo()
+    else
+      .global-header__logo
+        +link(`${root}`)(aria-label="ホーム")
+          +logo()
+
+    if headerNavigationMode !== 'only-drawer'
+      .global-header__navigation(data-drawer-inert)
+        +menu('main-menu-items')(class='header-navigation')
+
+    if headerNavigationMode !== 'no-drawer'
+      button.global-header__drawer(data-drawer-trigger)
+        .global-header__drawer__icon
+          span
+        span.global-header__drawer__text.is-to-open メニュー
+        span.global-header__drawer__text.is-to-close 閉じる
+
+  //- Drawer
+  if (headerNavigationMode !== 'no-drawer' && headerNavigationMode !== 'only-drawer')
+    include /partials/drawer.pug
+
+//- Drawer
+if headerNavigationMode === 'only-drawer'
+  include /partials/drawer.pug

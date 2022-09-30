@@ -77,3 +77,37 @@ export const debounceImmediate = (fn: Function, time: number = 60) => {
     }, time)
   }
 }
+
+/**
+ *
+ * @param {*} startTop
+ * @param {*} anchorTop
+ * @param {*} duration
+ * @param {*} callback
+ */
+export const runSmoothScroll = (startTop, anchorTop, duration, callback: Function | null = null) => {
+  const startTime = new Date().getTime()
+  const distance = anchorTop - startTop
+  const animate = () => {
+    const currentTime = new Date().getTime()
+    const elapsed = currentTime - startTime
+    const rate = elapsed / duration
+    const d = distance * (Math.sqrt(1 - Math.pow(rate - 1, 2)))
+    const scrollingElement = getScrollingElement()
+    if (! scrollingElement || undefined === scrollingElement.scrollTop) {
+      return
+    }
+    window.requestAnimationFrame(() => {
+      if (rate <= 1) {
+        scrollingElement.scrollTop = startTop + d
+        animate()
+      } else {
+        scrollingElement.scrollTop = anchorTop
+        if (typeof callback === 'function') {
+          callback()
+        }
+      }
+    })
+  }
+  animate()
+}

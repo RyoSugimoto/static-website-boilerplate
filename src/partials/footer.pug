@@ -1,2 +1,8 @@
-footer#footer.footer
-  .footer__copyright #{Config.copyright}
+footer#global-footer.global-footer
+  .global-footer__stack
+    .global-footer__logo
+      +link(`${root}`)(aria-label="ホーム")
+        +logo()
+    nav.global-footer__navigation
+      +menu('footer-menu-items')(class='footer-navigation')
+    .global-footer__copyright #{Config.copyright}

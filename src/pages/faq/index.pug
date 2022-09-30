@@ -2,17 +2,17 @@ extends /layouts/default.pug
 
 block props
   -
+    title = `FAQ - ${Config.name}`
     root = '..'
-    url += '/contact/'
-    title = `お問い合わせ - ${Config.name}`
+    url += '/faq/'
     breadcrumbList = [
       {
-        label: 'お問い合わせ'
+        label: 'FAQ'
       },
     ]
 
 block head
 
 block main
-  h1 Contact
+  h1 よくある質問
   div

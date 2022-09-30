@@ -9,7 +9,7 @@ const config = {
   title: 'Website Boilerplate - A boilerplate for static websites',
   description: 'This project is for static websites.',
   keywords: ['boilerplate', 'static', 'website'],
-  copyright: '© 2022 xxxx',
+  copyright: `© ${new Date().getFullYear()} xxxxxxxx`,
   themeColor: {
     light: 'white',
     dark: 'black'
@@ -20,7 +20,7 @@ const config = {
   contentDirectory: 'src/contents',
   components: {
     image: {
-      defaultPath: '/assets/images',
+      defaultPath: '/web-assets/images',
       nextGenFormats: true,
       webp: true,
       avif: true,

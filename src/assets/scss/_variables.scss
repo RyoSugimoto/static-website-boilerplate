@@ -2,22 +2,27 @@
 @use './settings';
 
 :root {
-  // Colors
+  // Color
 
   --color-white: #ffffff;
   --color-black: #000000;
+  --color-rich-black: #191818;
 
-  // Color schemes
+  // Color scheme
 
   --bg-color: var(--color-white);
-  --text-color: var(--color-black);
+  --text-color: var(--color-rich-black);
 
-  @include dark {
-    // --bg-color: var(--color-black);
-    // --text-color: var(--color-white);
+  &.is-user-color-scheme {
+    @include dark {
+      --bg-color: var(--color-rich-black);
+      --text-color: var(--color-white);
+    }
   }
 
-  // Font families
+  // Font family
+
+  --font-family-default: var(--font-family-jp-sans);
 
   --font-family-sans:
   "Helvetica Neue",
@@ -73,24 +78,36 @@
 
   --font-family-monospace: "Source Code Pro", "Monaco", "Courier New", "ＭＳ 明朝", "MS Mincho", "Osaka-Mono", monospace;
 
+  // Screen width
+
+  --screen-width-xs: #{map-get(settings.$screen-widths, xs)};
+  --screen-width-sm: #{map-get(settings.$screen-widths, sm)};
+  --screen-width-md: #{map-get(settings.$screen-widths, md)};
+  --screen-width-lg: #{map-get(settings.$screen-widths, lg)};
+  --screen-width-xl: #{map-get(settings.$screen-widths, xl)};
+  --screen-width-2xl: #{map-get(settings.$screen-widths, 2xl)};
+
+  --screen-max-width: #{map-get(settings.$screen-widths, 2xl)};
+  --screen-min-width: #{map-get(settings.$screen-widths, xs)};
+
   // Font size
 
-  --font-size-4: 8px;
-  --font-size-8: 16px;
-
   --font-size-root: clamp(
-    var(--font-size-4),
+    16px,
     calc(16 / 640 * 100vw),
-    var(--font-size-8)
+    16px
   );
+
+  --font-size-min: .625rem;
+  --font-size-xs: .75rem;
+  --font-size-sm: .875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
 
   // Font weights
 
   --font-weight-normal: 400;
   --font-weight-bold: 700;
-
-  // Wrapper
-
-  --wrapper-max-width: #{map-get(settings.$screen-widths, 2xl)};
-  --wrapper-min-width: #{map-get(settings.$screen-widths, xs)};
 }

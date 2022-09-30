@@ -1,21 +1,41 @@
 //- Page properties
 -
+  // Path
   let root = '.'
-  let assetPath = `${root}/assets`
+  let assetPath = `/web-assets`
+
+  // SEO
   let description = `${Config.description}`
   let keywords = `${Config.keywords.join(',')}`
   let url = `${Config.getUrl()}`
   let robots = ''
   let title = Config.title
-  let rootClass = 'is-header-sticky no-js'
+
+  // Design
+  let headerPosition = 'sticky' // 'relative' | 'sticky' | 'fixed'
+  let headerNavigationMode = 'toggle' // 'toggle' | 'only-drawer' | 'no-drawer'
+  let useColorScheme = false
+  let breadcrumbList = []
   let bodyClass = ''
 
 //- Overwrite page properties
 block props
 
+-
+  let rootClasses = [
+    `is-header-position-${headerPosition}`,
+    `is-header-navigation-${headerNavigationMode}`,
+  ]
+
+  if (useColorScheme) {
+    rootClasses.push('is-user-color-scheme')
+  }
+
+  let rootClass = rootClasses.join(' ')
+
 //- HTML
 doctype html
-html(lang=`${Config.language}`, class=rootClass)
+html.no-js(lang=`${Config.language}`, class=`${rootClass}`)
   head(prefix='og: https://ogp.me/ns#')
     //- Load components
     include /components/_load-components.pug
@@ -31,17 +51,17 @@ html(lang=`${Config.language}`, class=rootClass)
 
     block body-begin
 
-    //- Drawer
-    include /partials/drawer.pug
-
     //- Wrapper
-    .page-wrapper
+    .global-wrapper
 
       include /partials/header.pug
 
       main.main#main
+        include /partials/breadcrumb.pug
         block main
 
       include /partials/footer.pug
+
+    include /partials/loading.pug
 
     block body-end

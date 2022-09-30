@@ -28,9 +28,6 @@
     font-weight: var(--font-weight-bold);
     @include proportional;
     line-height: 1.75;
-    &__cushion {
-      // @include control-new-line;
-    }
   }
   &__bg {
     height: 100%;
