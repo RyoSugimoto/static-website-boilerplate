@@ -18,6 +18,14 @@ const config = {
   imageDirectory: 'src/assets/images',
   iconDirectory: 'src/assets/icons',
   contentDirectory: 'src/contents',
+  components: {
+    image: {
+      defaultPath: '/assets/images',
+      nextGenFormats: true,
+      webp: true,
+      avif: true,
+    }
+  },
 }
 
 module.exports = config

@@ -1,15 +1,26 @@
 //-
   img要素を出力する。
-  +image(`${assetPath}/images/name.jpg`, 'altテキスト')
-
-mixin image(src='', alt='', webp=true, avif=false)
+  使用例: +image(`${assetPath}/images/name.jpg`, 'altテキスト', './assets/images')
+  @param {string} src 画像ソースディレクトリ以下の画像名もしくはパス。
+  @param {string} path 公開時の画像ディレクトリへのパス。何も渡さなければ、デフォルト設定を参照する。
+  @param {boolean} nextGenFormats 次世代フォーマットの画像を使用するかどうか。
+mixin image(src='', path='', nextGenFormats=true)
   -
-    // 画像の公開ディレクトリ
-    const distDirectoryPath = assetPath ? `${assetPath}/images` : ''
+    // デフォルト設定
+    // website.config.jsのconfig.components.imageで上書きをする。
+    const componentSettings = Object.assign({
+      defaultPath: '/assets/images',
+      nextGenFormats: true, // 次世代フォーマットが未対応の環境向けのフォールバック処理をするか
+      webp: true, // webpの使用を有効にするか
+      avif: true, // avifの使用を有効にするか
+    }, Config.components ? Config.components.image : {})
+
     // srcを、$1: ファイルパス、$2: 拡張子、$3: クエリ文字列に分割する正規表現
     const regex = /(.+)\.(jpe?g|png|gif|webp)(\?.*)?$/
     const ext = src.replace(regex, '$2')
-    const distSrc = `${distDirectoryPath}/${src}`
+
+    // パスの設定
+    const distSrc = path ? `${path}/${src}` : `${componentSettings.defaultPath}/${src}`
 
     // 幅と高さを取得してそれぞれの属性にセット。
     if (getImageData !== undefined && typeof getImageData === 'function') {
@@ -18,20 +29,23 @@ mixin image(src='', alt='', webp=true, avif=false)
       if (imageData.isError) {
         console.log(imageData.message)
       } else {
-        attributes['width'] = attributes.width || imageData.width || ''
-        attributes['height'] = attributes.height || imageData.height || ''
+        attributes['width'] = imageData.width
+        attributes['height'] = imageData.height
       }
     }
 
-  //- webpオプションかavifオプションがtrueの場合は、JPEGとPNGは同名のWebpを優先して表示し、フォールバックとして元画像を設定。
-  if webp || avif && /jpe?g|png/.test(ext)
-    picture
-      if avif
-        source(srcset=distSrc.replace(regex, '$1.avif$3'), type='image/avif')
-      if webp
-        source(srcset=distSrc.replace(regex, '$1.webp$3'), type='image/webp')
-      img.component-image(src=distSrc, alt=alt)&attributes(attributes)
+    // altの設定がなければ、altの値に空文字列を設定
+    attributes['alt'] = attributes['alt'] || ''
 
-  //- webpオプションがfalseの場合は、imgのみを表示
+  //- nextGenFormatsオプションがtrueの場合は、JPEGとPNGは同名の次世代フォーマット画像を優先して表示し、フォールバックとして元画像を設定。
+  if nextGenFormats && componentSettings.nextGenFormats && /jpe?g|png/.test(ext)
+    picture
+      if componentSettings.avif
+        source(srcset=distSrc.replace(regex, '$1.avif$3'), type='image/avif')
+      if componentSettings.webp
+        source(srcset=distSrc.replace(regex, '$1.webp$3'), type='image/webp')
+      img.component-image(src=distSrc)&attributes(attributes)
+
+  //- nextGenFormatsオプションがfalseの場合は、imgのみを表示
   else
-    img.component-image(src=distSrc, alt=alt)&attributes(attributes)
+    img.component-image(src=distSrc)&attributes(attributes)

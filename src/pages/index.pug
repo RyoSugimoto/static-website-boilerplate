@@ -4,6 +4,7 @@ block props
   -
     root = '.'
     rootClass = 'is-header-fixed'
+    imagePath = `${root}/assets/images`
 
 block head
 
@@ -15,10 +16,10 @@ block main
       p
         +cushion 静的ウェブサイトを制作するときの雛形。
     .hero__bg
-      +image(`mountain.jpeg`, 'ビルの写真')(loading='lazy')
+      +image(`mountain.jpeg`, '')(loading='lazy')
   +spacer('2rem')
   +container()
-    +image(`illustrations/kaiju.png`, '怪獣のイラスト')(loading='lazy')
+    +image(`illustrations/kaiju.png`)(loading='lazy', alt='怪獣')
     +code(`<script>
 const aaaaa = 123
 const get = () => {

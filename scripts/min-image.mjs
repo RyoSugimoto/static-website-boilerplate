@@ -28,7 +28,7 @@ const min = async(path) => {
     destination: `${outputDir}${structure}`,
     plugins: [
       imageminMozjpeg({
-        quality: 50,
+        quality: 75,
       }),
       imageminPngquant({
         speed: 6,
