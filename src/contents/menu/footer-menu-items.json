@@ -35,9 +35,9 @@
     "isRelative": true
   },
   {
-    "slug": "corporate-profile",
-    "label": "会社概要",
-    "url": "/corporate-profile/",
+    "slug": "company",
+    "label": "会社情報",
+    "url": "/company/",
     "isExternal": false,
     "isRelative": true
   },

@@ -1,0 +1,18 @@
+mixin page-title(pre='', sub='')
+  h1.component-page-title
+    span.component-page-title__main
+      block
+
+style.
+  .component-page-title {
+    background-color: var(--page-title-bg-color, transparent);
+    font-feature-setting: "palt";
+    margin: 1.5rem 0;
+    padding: var(--page-title-outer-padding, 1.5rem 1rem);
+  }
+
+  .component-page-title__main {
+    display: block;
+    max-width: var(--page-title-max-width, var(--screen-width-lg));
+    margin: 0 auto;
+  }

@@ -1,20 +1,39 @@
-mixin container(padding='', maxWidth='', isCentered=true)
+mixin container(maxWidth='none', isCentered=true)
   -
-    const baseClass = 'component-brand-container'
-  div(class=`${baseClass}${isCentered ? ` ${baseClass}--centered` : ''}
-  `, style=`
-    ${maxWidth ? `--component-brand-container-max-width: ${maxWidth}` : ''};
-    ${padding ? `--component-brand-container-padding: ${padding}` : ''};
+    const baseClass = 'component-container'
+  div(class=`
+    ${baseClass}
+    ${isCentered ? 'is-centered' : ''}
+    is-width-${maxWidth}
   `)&attributes(attributes)
     block
 
 style.
-  .component-brand-container {
-    max-width: var(--component-brand-container-max-width, none);
-    padding: var(--component-brand-container-padding, 2rem);
+  .component-container {
+    box-sizing: content-box;
+    max-width: var(--container-max-width, none);
+    padding: var(--container-padding-y, 0) var(--container-padding-x, 1rem);
+    &.is-width-xs {
+      --container-max-width: var(--screen-width-xs);
+    }
+    &.is-width-sm {
+      --container-max-width: var(--screen-width-sm);
+    }
+    &.is-width-md {
+      --container-max-width: var(--screen-width-md);
+    }
+    &.is-width-lg {
+      --container-max-width: var(--screen-width-lg);
+    }
+    &.is-width-xl {
+      --container-max-width: var(--screen-width-xl);
+    }
+    &.is-width-2xl {
+      --container-max-width: var(--screen-width-2xl);
+    }
   }
 
-  .component-brand-container--centered {
+  .component-container.is-centered {
     margin-right: auto;
     margin-left: auto;
   }

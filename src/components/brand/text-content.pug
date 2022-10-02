@@ -1,0 +1,31 @@
+mixin text-content()
+  .component-text-content(data-text-content)
+    block
+
+style.
+  [data-text-content] {
+    & h2 {
+      font-size: var(--text-content-h2-font-size, 1.5rem);
+      line-height: var(--text-content-h2-line-height, 1.35);
+      margin: var(--text-content-h2-margin, 1.5rem 0);
+    }
+
+    & h3 {
+      margin: var(--text-content-h3-margin, 1.5rem 0);
+    }
+
+    & p,
+    & figure,
+    & ul,
+    & ol,
+    & dl,
+    & blockquote {
+      margin: var(--text-content-margin, 1.5rem 0);
+    }
+
+    & img,
+    & svg {
+      display: block;
+      max-width: 100%;
+    }
+  }

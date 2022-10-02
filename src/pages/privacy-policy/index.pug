@@ -2,12 +2,19 @@ extends /layouts/default.pug
 
 block props
   -
-    title = `Privacy policy - ${Config.name}`
+    title = `個人情報の取り扱いについて - ${Config.name}`
     root = '..'
     url += '/privacy-policy/'
+    breadcrumbList = [
+      {
+        label: '個人情報の取り扱いについて'
+      },
+    ]
 
 block head
 
 block main
-  h1 個人情報の取り扱いについて
-  div
+  +page-title 個人情報の取り扱いについて
+  +container('lg')
+    +text-content
+      +content('page', 'privacy-policy')

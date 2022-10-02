@@ -1,0 +1,18 @@
+extends /layouts/default.pug
+
+block props
+  -
+    title = `会社情報 - ${Config.name}`
+    root = '..'
+    url += '/company/'
+    breadcrumbList = [
+      {
+        label: '会社情報'
+      },
+    ]
+
+block head
+
+block main
+  h1 会社情報
+  +container()

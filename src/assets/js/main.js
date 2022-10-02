@@ -5,6 +5,16 @@ import Drawer from './libraries/drawer-module'
 import { getScrollingElement, setCorrectVh, debounce, runSmoothScroll } from './functions'
 
 // ================
+// 要素を取得
+
+const Elements = {
+  root: document.documentElement,
+  body: document.body,
+  scroll: getScrollingElement(),
+  links: document.querySelectorAll('[data-link]'),
+}
+
+// ================
 // IEのときの処理
 
 const isIe = document.documentMode
@@ -28,16 +38,6 @@ window.addEventListener('pageshow', event => {
 window.addEventListener('resize', () => { setCorrectVh() })
 window.addEventListener('load', () => { setCorrectVh() })
 setCorrectVh()
-
-// ================
-// 要素を取得
-
-const elements = {
-  root: document.documentElement,
-  body: document.body,
-  scroll: getScrollingElement(),
-  links: document.querySelectorAll('[data-link]'),
-}
 
 // ================
 // ドロワー
@@ -78,7 +78,7 @@ if (drawerElement) {
 
 const linkInterval = 500
 
-for (let link of elements.links) {
+for (let link of Elements.links) {
   const pageUrlPattern = /(https?:\/\/.+\/?)([#].*)/
   const targetPageUrl = link.href.replace(pageUrlPattern, '$1')
   const hash= link.href.match(/[#].*/)
@@ -94,7 +94,7 @@ for (let link of elements.links) {
         targetAnchor = document.querySelector(hash)
       }
 
-      const scrollTop = elements.scroll.scrollTop
+      const scrollTop = Elements.scroll.scrollTop
 
       // スクロール前のスクロール位置を記憶
       history.pushState({
@@ -115,7 +115,7 @@ for (let link of elements.links) {
 
     } else {
       // リンク先が別のページの場合
-      elements.root.setAttribute('data-loading-state', 'loading')
+      Elements.root.setAttribute('data-loading-state', 'loading')
       setTimeout(() => {
         window.location.href = link.href
       }, linkInterval)
@@ -124,7 +124,7 @@ for (let link of elements.links) {
 }
 
 window.addEventListener('popstate', event => {
-  const scrollTop = elements.scroll.scrollTop
+  const scrollTop = Elements.scroll.scrollTop
   let newScrollTop = 0
   if (event.state && event.state.scrollTop) {
     newScrollTop = event.state.scrollTop
@@ -133,11 +133,11 @@ window.addEventListener('popstate', event => {
 })
 
 window.addEventListener('DOMContentLoaded', () => {
-  elements.root.setAttribute('data-loading-state', 'loading')
+  Elements.root.setAttribute('data-loading-state', 'loading')
 })
 
 window.addEventListener('load', () => {
-  elements.root.setAttribute('data-loading-state', 'loaded')
+  Elements.root.setAttribute('data-loading-state', 'loaded')
 })
 
 // ================

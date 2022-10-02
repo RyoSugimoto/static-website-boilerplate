@@ -1,29 +1,17 @@
+@use 'sass:math' as math;
 @use './utilities' as *;
 @use './settings';
 
 :root {
-  // Color
+  // ================
+  // Define values
 
+  // Colors
   --color-white: #ffffff;
   --color-black: #000000;
   --color-rich-black: #191818;
 
-  // Color scheme
-
-  --bg-color: var(--color-white);
-  --text-color: var(--color-rich-black);
-
-  &.is-user-color-scheme {
-    @include dark {
-      --bg-color: var(--color-rich-black);
-      --text-color: var(--color-white);
-    }
-  }
-
-  // Font family
-
-  --font-family-default: var(--font-family-jp-sans);
-
+  // Font families
   --font-family-sans:
   "Helvetica Neue",
   Arial,
@@ -33,7 +21,6 @@
   "Segoe UI Symbol",
   "Noto Color Emoji",
   sans-serif;
-
   --font-family-serif:
   "Times New Roman",
   Times,
@@ -44,7 +31,6 @@
   "Segoe UI Symbol",
   "Noto Color Emoji",
   serif;
-
   --font-family-jp-sans:
   "游ゴシック体",
   YuGothic, "Yu Gothic",
@@ -59,7 +45,6 @@
   "Segoe UI Symbol",
   "Noto Color Emoji",
   sans-serif;
-
   --font-family-jp-serif:
   "游明朝体", YuMincho, "Yu Mincho",
   "ヒラギノ明朝 Pro", "Hiragino Mincho Pro",
@@ -73,31 +58,9 @@
   "Segoe UI Symbol",
   "Noto Color Emoji",
   serif;
-
-  --font-family-display: var(--font-family-sans);
-
   --font-family-monospace: "Source Code Pro", "Monaco", "Courier New", "ＭＳ 明朝", "MS Mincho", "Osaka-Mono", monospace;
 
-  // Screen width
-
-  --screen-width-xs: #{map-get(settings.$screen-widths, xs)};
-  --screen-width-sm: #{map-get(settings.$screen-widths, sm)};
-  --screen-width-md: #{map-get(settings.$screen-widths, md)};
-  --screen-width-lg: #{map-get(settings.$screen-widths, lg)};
-  --screen-width-xl: #{map-get(settings.$screen-widths, xl)};
-  --screen-width-2xl: #{map-get(settings.$screen-widths, 2xl)};
-
-  --screen-max-width: #{map-get(settings.$screen-widths, 2xl)};
-  --screen-min-width: #{map-get(settings.$screen-widths, xs)};
-
-  // Font size
-
-  --font-size-root: clamp(
-    16px,
-    calc(16 / 640 * 100vw),
-    16px
-  );
-
+  // Font sizes
   --font-size-min: .625rem;
   --font-size-xs: .75rem;
   --font-size-sm: .875rem;
@@ -107,7 +70,59 @@
   --font-size-2xl: 2rem;
 
   // Font weights
-
   --font-weight-normal: 400;
   --font-weight-bold: 700;
+
+  // Line height
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  // Screen widths
+  --screen-width-xs: #{map-get(settings.$screen-widths, xs)};
+  --screen-width-sm: #{map-get(settings.$screen-widths, sm)};
+  --screen-width-md: #{map-get(settings.$screen-widths, md)};
+  --screen-width-lg: #{map-get(settings.$screen-widths, lg)};
+  --screen-width-xl: #{map-get(settings.$screen-widths, xl)};
+  --screen-width-2xl: #{map-get(settings.$screen-widths, 2xl)};
+
+
+
+  // ================
+  // Global values
+
+  // Color schemes
+  --bg-color: var(--color-white);
+  --text-color: var(--color-rich-black);
+  &.is-user-color-scheme {
+    @include dark {
+      // Dark mode
+      --bg-color: var(--color-rich-black);
+      --text-color: var(--color-white);
+    }
+  }
+
+  // Font family
+  --font-family-default: var(--font-family-jp-sans);
+  --font-family-display: var(--font-family-sans);
+
+  // Typography
+  $root-font-size-screen-width: math.div(map-get(settings.$screen-widths, sm), 1px);
+  --root-font-size: 16;
+  --root-font-size-min-value: 16px;
+  --root-font-size-max-value: 16px;
+  --root-font-size-value: calc(var(--root-font-size) / #{$root-font-size-screen-width} * 100vw);
+  --rem-px: calc(1rem / var(--root-font-size, 16));
+  --root-line-height: var(--line-height-normal);
+
+  // Screen-width
+  --screen-max-width: #{map-get(settings.$screen-widths, 2xl)};
+  --screen-min-width: #{map-get(settings.$screen-widths, xs)};
+
+  // Spacing
+  --layout-padding-x: 1rem;
+  --layout-padding-y: 1.5rem;
 }

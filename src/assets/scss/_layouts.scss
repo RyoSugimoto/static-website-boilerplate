@@ -4,10 +4,15 @@
 
 $screen-width-md: 768px;
 
+:root {
+  --header-height: 4rem;
+}
+
 .global-wrapper {
   display: grid;
   gap: 0;
   grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
   margin: 0 auto;
   max-width: var(--screen-max-width);
   min-height: 100vh;
@@ -22,18 +27,22 @@ $screen-width-md: 768px;
   box-sizing: border-box;
   color: var(--header-text-color, var(--text-color));
   display: flex;
-  --header-height: 4rem;
   height: var(--header-height);
   left: 0;
   margin: var(--header-margin, 0 auto);
   max-width: var(--screen-max-width);
   min-width: var(--screen-min-width);
-  padding: var(--header-padding, 0);
+  padding: var(--header-padding, 0 0 0 var(--layout-padding-x));
   position: relative;
   right: 0;
   top: 0;
   width: 100%;
   z-index: var(--header-z-index, 100);
+  .is-header-navigation-toggle & {
+    @include over($screen-width-md) {
+      padding: var(--header-padding, 0 var(--layout-padding-x));
+    }
+  }
   .is-header-position-sticky & {
     position: sticky;
   }
@@ -46,12 +55,14 @@ $screen-width-md: 768px;
     display: flex;
     flex: 1 0 100%;
     flex-wrap: nowrap;
+    margin: 0 auto;
+    max-width: var(--header-stack-max-width, var(--screen-width-xl));
     position: relative;
   }
   &__logo {
     flex: 0 0 auto;
     margin: 0;
-    padding: var(--header-logo-padding, 0 0 0 1rem);
+    padding: var(--header-logo-padding, 0);
     position: relative;
     z-index: var(--header-logo-z-index, 10001);
     a {
@@ -114,7 +125,7 @@ $screen-width-md: 768px;
         background: currentColor;
         content: "";
         display: block;
-        height: 1px;
+        height: calc(1 * var(--rem-px, .0625));
         left: 0;
         position: absolute;
         top: 50%;
@@ -139,13 +150,13 @@ $screen-width-md: 768px;
       font-feature-settings: "palt";
       font-size: var(--header-drawer-font-size, var(--font-size-xs));
       line-height: 1;
-      &.is-to-open {
+      &__open {
         display: block;
         .is-header-navigation-toggle [aria-expanded=true] & {
           display: none;
         }
       }
-      &.is-to-close {
+      &__close {
         display: none;
         .is-header-navigation-toggle [aria-expanded=true] & {
           display: block;
@@ -209,21 +220,21 @@ $screen-width-md: 768px;
     bottom: 0;
     box-sizing: border-box;
     color: var(--drawer-text-color, var(--text-color));
-    --drawer-padding: 0;
     height: 100%;
     @include invisible-scrollbar;
     left: auto;
     max-width: var(--drawer-max-width, $screen-width-md);
     overflow-y: scroll;
-    padding: var(--drawer-padding);
+    padding: var(--drawer-padding, 0);
     position: absolute;
     right: 0;
     top: 0;
-    transition: transform .3s ease-out 0s;
+    transition: transform .3s ease-out .2s;
     width: 100%;
     z-index: 1;
     [hidden] & {
       transform: translate3d(100%, 0, 0);
+      transition: transform .3s ease-out 0s;
     }
     .is-header-navigation-only-drawer & {
       --drawer-padding: 0;
@@ -254,6 +265,9 @@ $screen-width-md: 768px;
     }
   }
   &__close {
+    background: transparent;
+    border: 0;
+    line-height: var(--drawer-close-line-height, var(--line-height-none));
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-end;
@@ -297,7 +311,7 @@ $screen-width-md: 768px;
 .global-footer {
   background-color: var(--footer-bg-color, transparent);
   color: var(--footer-text-color, inherit);
-  padding: var(--footer-padding, 2rem 1rem);
+  padding: var(--footer-padding, 2rem var(--layout-padding-x));
   z-index: 90;
   &__go-top {
     background: #999;
@@ -375,15 +389,17 @@ $screen-width-md: 768px;
   font-size: var(--breadcrumb-font-size, var(--font-size-sm));
   line-height: 1;
   margin: 0 auto;
-  max-width: var(--screen-width-xl);
-  max-width: 100vw;
-  overflow-x: scroll;
-  padding: var(--breadcrumb, .5rem 1rem);
-  width: 100%;
+  padding: var(--breadcrumb-outer-padding, .75rem 1rem);
+  &__inner {
+    margin: 0 auto;
+    max-width: var(--screen-width-xl);
+  }
   &__list {
     display: flex;
+    overflow: auto;
     flex-wrap: nowrap;
     white-space: nowrap;
+    @include invisible-scrollbar;
   }
   &__item {
     align-items: center;
@@ -396,6 +412,7 @@ $screen-width-md: 768px;
       }
     }
     a {
+      display: inline-block;
       color: inherit;
       text-decoration: underline;
     }

@@ -8,7 +8,7 @@ module.exports = ctx => ({
       },
       stage: 2,
       features: {
-        'custom-properties': true,
+        // 'custom-properties': true,
         'nesting-rules': true,
       },
       // カスタムプロパティの参照先ファイル

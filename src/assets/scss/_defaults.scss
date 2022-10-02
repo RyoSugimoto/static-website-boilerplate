@@ -7,8 +7,12 @@ html {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-family-jp-sans);
-  font-size: var(--font-size-root);
-  line-height: 1.75;
+  font-size: clamp(
+    var(--root-font-size-min-value),
+    var(--root-font-size-value),
+    var(--root-font-size-max-value)
+  );
+  line-height: var(--root-line-height);
   overflow-y: scroll;
 }
 

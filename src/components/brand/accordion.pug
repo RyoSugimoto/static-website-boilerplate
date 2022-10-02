@@ -1,0 +1,6 @@
+mixin accordion(data=[])
+  .component-accordion
+    each item in data
+      details.component-accordion__item
+        summary.component-accordion__summary #{data.summary}
+        .component-accordion__detail !{data.detail}
