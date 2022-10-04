@@ -32,22 +32,18 @@ $screen-width-md: 768px;
   margin: var(--header-margin, 0 auto);
   max-width: var(--screen-max-width);
   min-width: var(--screen-min-width);
-  padding: var(--header-padding, 0 0 0 var(--layout-padding-x));
+  padding: var(--header-padding, 0 var(--layout-padding-x));
   position: relative;
   right: 0;
   top: 0;
   width: 100%;
   z-index: var(--header-z-index, 100);
-  .is-header-navigation-toggle & {
-    @include over($screen-width-md) {
-      padding: var(--header-padding, 0 var(--layout-padding-x));
-    }
-  }
   .is-header-position-sticky & {
     position: sticky;
   }
   .is-header-position-fixed & {
-    position: fixed;
+    margin-bottom: calc(var(--header-height) * -1);
+    position: sticky;
   }
   &__stack {
     align-items: var(--header-stack-align, center);
@@ -121,29 +117,37 @@ $screen-width-md: 768px;
       margin: 0 auto .25rem;
       position: relative;
       width: var(--header-drawer-icon-width, calc(var(--header-height) / 2.5));
-      &::before, &::after {
+      &::before, &::after, > span {
         background: currentColor;
         border-radius: var(--header-drawer-icon-radius, var(--border-radius-full, 9999));
         content: "";
         display: block;
-        height: calc(1 * var(--rem-px, .0625));
+        --header-drawer-icon-bar-height-value: calc(var(--header-drawer-icon-bar-height, 1) * var(--rem-px, .0625));
+        height: var(--header-drawer-icon-bar-height-value);
         left: 0;
         position: absolute;
-        top: 50%;
-        transform: translate3d(0, -50%, 0);
+        top: calc(50% - var(--header-drawer-icon-bar-height-value));
+        transform: translate3d(0, 0, 0);
+        transform-origin: center;
         transition: transform .35s ease-out 0s;
         width: 100%;
       }
       &::before {
-        transform: rotate(0deg) translate3d(0, calc(-.25rem - 50%), 0);
+        transform: rotate(0deg) translate3d(0, calc(-.5rem), 0);
         .is-header-navigation-toggle [aria-expanded=true] & {
-          transform: rotate(-225deg) translate3d(0, -50%, 0);
+          transform: rotate(-225deg) translate3d(0, 0, 0);
         }
       }
       &::after {
-        transform: rotate(0deg) translate3d(0, calc(.25rem - 50%), 0);
+        transform: rotate(0deg) translate3d(0, calc(.5rem), 0);
         .is-header-navigation-toggle [aria-expanded=true] & {
-          transform: rotate(225deg) translate3d(0, -50%, 0);
+          transform: rotate(225deg) translate3d(0, 0, 0);
+        }
+      }
+      > span {
+        transform: scale(1, 1) translate3d(0, 0, 0);
+        .is-header-navigation-toggle [aria-expanded=true] & {
+          transform: scale(0, 1);
         }
       }
     }
@@ -314,17 +318,6 @@ $screen-width-md: 768px;
   color: var(--footer-text-color, inherit);
   padding: var(--footer-padding, 2rem var(--layout-padding-x));
   z-index: 90;
-  &__go-top {
-    background: #999;
-    bottom: 1rem;
-    color: #fff;
-    color: inherit;
-    line-height: 1;
-    padding: .25rem;
-    position: fixed;
-    right: 1rem;
-    text-decoration: none;
-  }
   &__stack {
     align-items: flex-start;
     display: flex;
@@ -412,9 +405,12 @@ $screen-width-md: 768px;
         margin: 0 .5rem 0;
       }
     }
-    a {
+    a, span {
       display: inline-block;
       color: inherit;
+      padding: var(--breadcrumb-item-padding, .25em 0);
+    }
+    a {
       text-decoration: underline;
     }
   }

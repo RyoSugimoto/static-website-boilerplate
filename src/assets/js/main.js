@@ -128,10 +128,14 @@ for (let link of Elements.links) {
 
     } else {
       // リンク先が別のページの場合
-      Elements.root.setAttribute('data-loading-state', 'loading')
-      setTimeout(() => {
-        window.location.href = link.href
-      }, linkInterval)
+      if (link.target === '_blank') {
+        window.open(link.href, '_blank')
+      } else {
+        Elements.root.setAttribute('data-loading-state', 'loading')
+        setTimeout(() => {
+          window.location.href = link.href
+        }, linkInterval)
+      }
     }
   })
 }
