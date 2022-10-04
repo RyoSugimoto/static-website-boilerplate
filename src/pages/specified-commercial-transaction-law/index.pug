@@ -14,5 +14,7 @@ block props
 block head
 
 block main
-  h1 特定商取引法に基づく表示
-  +container()
+  +page-title() 特定商取引法に基づく表示
+  +container('lg')
+    +text-content()
+      +content('page', 'specified-commercial-transaction-law')

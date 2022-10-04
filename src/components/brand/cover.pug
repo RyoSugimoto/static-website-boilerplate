@@ -1,5 +1,20 @@
-mixin cover(src='', height='auto')
-  .component-cover
-    .component-cover__bg
-    .component-cover__content
-      block
+mixin cover(height='full', src='', path='', nextGenFormats=true)
+  -
+    const hasAspectRatio = /\d+\/\d+/.test(height)
+    if (hasAspectRatio) {
+      const aspectRatioArray = height.split('/')
+      attributes.style = `
+        --aspect-ratio-x: ${aspectRatioArray[0]};
+        --aspect-ratio-y: ${aspectRatioArray[1]};
+      `
+    }
+  .component-cover(class=(height === 'full') ? 'is-full-height' : null)&attributes(attributes)
+    block
+
+mixin cover-bg()
+  .component-cover__bg&attributes(attributes)
+    block
+
+mixin cover-content()
+  .component-cover__content&attributes(attributes)
+    block

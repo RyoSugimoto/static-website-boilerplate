@@ -2,7 +2,15 @@ import ObjectFitImages from 'object-fit-images'
 import 'mdn-polyfills/NodeList.prototype.forEach'
 import './libraries/modernizr-only-webp'
 import Drawer from './libraries/drawer-module'
-import { getScrollingElement, setCorrectVh, debounce, runSmoothScroll } from './functions'
+import { isPhone, getScrollingElement, setCorrectVh, debounce, runSmoothScroll } from './functions'
+import './swiper'
+
+// ================
+// イージング関数
+
+const Easing = {
+  easeOutCirc: number => Math.sqrt(1 - Math.pow(number - 1, 2)),
+}
 
 // ================
 // 要素を取得
@@ -22,6 +30,11 @@ if (isIe) {
   // CSSのobject-fitプロパティのポリフィルを実行
   ObjectFitImages()
 }
+
+// ================
+// スマートフォンからのアクセスかどうかに応じて`html`要素に属性を付与する。
+
+Elements.root.setAttribute(isPhone() ? 'data-is-phone' : 'data-is-not-phone', '')
 
 // ================
 // ブラウザバック時に強制的に再読み込み
@@ -111,7 +124,7 @@ for (let link of Elements.links) {
         scrollTop: newScrollTop
       }, null, `${hash || '#'}`)
 
-      runSmoothScroll(scrollTop, newScrollTop, linkInterval)
+      runSmoothScroll(scrollTop, newScrollTop, 1000, Easing.easeOutCirc)
 
     } else {
       // リンク先が別のページの場合
@@ -129,7 +142,7 @@ window.addEventListener('popstate', event => {
   if (event.state && event.state.scrollTop) {
     newScrollTop = event.state.scrollTop
   }
-  runSmoothScroll(scrollTop, newScrollTop, linkInterval)
+  runSmoothScroll(scrollTop, newScrollTop, 1000, Easing.easeOutCirc)
 })
 
 window.addEventListener('DOMContentLoaded', () => {

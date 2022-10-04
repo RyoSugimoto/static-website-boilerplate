@@ -1,0 +1,9 @@
+mixin button(href='', icon='', link=true)
+  - attributes['data-link'] = link
+  a.component-button-link(href=href)&attributes(attributes)
+    .component-button-link__stack
+      if icon
+        span.component-button-link__icon
+          +icon(icon)
+      span.component-button-link__text
+        block

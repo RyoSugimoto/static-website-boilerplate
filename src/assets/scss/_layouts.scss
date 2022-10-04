@@ -123,6 +123,7 @@ $screen-width-md: 768px;
       width: var(--header-drawer-icon-width, calc(var(--header-height) / 2.5));
       &::before, &::after {
         background: currentColor;
+        border-radius: var(--header-drawer-icon-radius, var(--border-radius-full, 9999));
         content: "";
         display: block;
         height: calc(1 * var(--rem-px, .0625));

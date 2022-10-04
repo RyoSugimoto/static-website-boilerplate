@@ -1,3 +1,23 @@
-mixin swiper()
-  .component-swiper.swiper
-    .component-swiper__slide
+mixin swiper(swiperSettings = {}, hasPagination=true, hasNavigation=true)
+  -
+    const settings = Object.assign({
+      loop: true,
+      slidesPerView: 1,
+      autoplay: null,
+    }, swiperSettings)
+
+  .component-swiper.swiper(data-swiper, data-swiper-loop=settings.loop, data-swiper-slides-per-view=settings.slidesPerView, data-swiper-autoplay=settings.autoplay)&attributes(attributes)
+
+    if hasNavigation
+      .component-swiper__navigation__prev.swiper-button-prev
+      .component-swiper__navigation__next.swiper-button-next
+
+    .component-swiper__slide.swiper-wrapper(class=listClass)
+      block
+
+    if hasPagination
+      .component-swiper__pagination.swiper-pagination
+
+mixin swiper-item()
+  .component-swiper-item.swiper-slide&attributes(attributes)
+    block

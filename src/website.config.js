@@ -2,7 +2,7 @@ const path = require('path')
 
 const config = {
   name: 'Website Boilerplate',
-  domain: 'websiteboilerplate.com',
+  domain: 'websiteboilerplate.xxx',
   protocol: 'https',
   charset: 'UTF-8',
   language: 'ja',

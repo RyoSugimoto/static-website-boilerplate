@@ -7,6 +7,6 @@ if (Array.isArray(breadcrumbList) && breadcrumbList.length !== 0)
         each item in breadcrumbList
           li.breadcrumb__item
             if item.url
-              +link(url) #{item.label}
+              +link(item.url) #{item.label}
             else
               span #{item.label || ''}

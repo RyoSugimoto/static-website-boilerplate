@@ -8,50 +8,53 @@ block props
 block head
 
 block main
-  .hero
-    .hero__content
-      h1.hero__copy
+
+  +cover('full')
+    +cover-bg
+      +image('mountain.jpeg', '')(loading='lazy')
+    +cover-content
+      h1
         +cushion The Boilerplate For A Static Website.
       p
         +cushion 静的ウェブサイトを制作するときの雛形。
-    .hero__bg
-      +image(`mountain.jpeg`, '')(loading='lazy')
-  +spacer('2rem')
-  +container()
-    +image(`illustrations/kaiju.png`)(loading='lazy', alt='怪獣')
-    +code(`<script>
-const aaaaa = 123
-const get = () => {
-  console.log('いちにさん')
-  return {}
-}
-</script>`)
 
-  ul
-    li TypeScriptの調整
-      ul
-        li スムーズスクロールのイージング
-    li フォームスタイル
-    li 固定表示（fixed-bar）
-    li アコーディオンメニュー（details）
-    li コードスニペット（sample）
-    li スライドショー（swiper）
-    li モーダル（dialog? js?）
-    li プライバシーポリシーなど
-    li デフォルトファビコン
+  +cover('16/9')
+    +cover-bg
+      +image('mountain.jpeg', '')(loading='lazy')
+    +cover-content
+      h1
+        +cushion 16:9のカバー
+
+  +spacer('2rem')
+
+  +swiper()
+    +swiper-item
+      +container('sm')
+        +image(`illustrations/kaiju.png`)(loading='lazy', alt='怪獣')
+    +swiper-item
+      +container('sm')
+        +image(`illustrations/kaiju.png`)(loading='lazy', alt='怪獣')
+    +swiper-item
+      +container('sm')
+        +image(`illustrations/kaiju.png`)(loading='lazy', alt='怪獣')
+
+  +spacer('2rem')
+
+  +container
+    +button(`${root}`, 'arrow-narrow-right') ボタンリンク
+
+  +spacer('2rem')
 
   +container('', '768px')()
-    +heading(1, '01')(id='what-is-heading') What is
-    +icon('brand-github')
+    +text-content
+      h2
+        +icon('brand-github')
+        | About
 
-    +table('果物の売れ行き',
-      ['種類', '1月', '2月', '3月'],
-    [
-      ['りんご', '100', '200', '400'],
-      ['みかん', '100', '200', '400'],
-      ['ぶどう', '100', '200', '400'],
-    ])
-
-  #about
-    h2 About
-
+      +table('果物の売れ行き',
+        ['種類', '1月', '2月', '3月'],
+      [
+        ['りんご', '100', '200', '400'],
+        ['みかん', '100', '200', '400'],
+        ['ぶどう', '100', '200', '400'],
+      ])

@@ -89,6 +89,15 @@
   --screen-width-xl: #{map-get(settings.$screen-widths, xl)};
   --screen-width-2xl: #{map-get(settings.$screen-widths, 2xl)};
 
+  // Border radius
+  --border-radius-none: 0;
+  --border-radius-sm: .125rem;
+  --border-radius: .25rem;
+  --border-radius-md: .375rem;
+  --border-radius-lg: .5rem;
+  --border-radius-xl: .75rem;
+  --border-radius-2xl: 1rem;
+  --border-radius-full: 9999px;
 
 
   // ================

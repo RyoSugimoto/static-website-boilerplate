@@ -14,5 +14,7 @@ block props
 block head
 
 block main
-  h1 よくある質問
-  div
+  +page-title() よくある質問
+  +container('lg')
+    +text-content()
+

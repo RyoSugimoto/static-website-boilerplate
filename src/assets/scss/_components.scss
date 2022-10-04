@@ -1,0 +1,230 @@
+@use './placeholders';
+
+// ================
+// code
+
+.component-code {
+  background: #000;
+  color: #fff;
+  padding: 1rem;
+  pre {
+    white-space: pre-wrap;
+  }
+}
+
+// ================
+// cushion
+
+.component-cushion {
+  background: var(--cushion-bg, var(--text-color, currentColor));
+  box-decoration-break: clone;
+  color: var(--cushion-color, var(--bg-color, #fff));
+  display: inline;
+  padding: var(--cushion-padding, .25em);
+}
+
+// ================
+// icon
+
+.component-icon {
+  display: inline-block;
+  line-height: 1;
+  width: var(--icon-width, 1em);
+  & svg {
+    display: block;
+    height: var(--icon-height, 1);
+    stroke: var(--icon-stroke, currentColor);
+    stroke-width: var(--icon-stroke-width, 1.5px);
+    width: 100%;
+  }
+}
+
+// ================
+// button-link
+
+.component-button-link {
+  @extend %button;
+  &__stack {
+    @extend %inline-stack;
+  }
+}
+
+// ================
+// cover
+
+.component-cover {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  &::before {
+    content: "";
+    float: left;
+    padding-top: calc(var(--aspect-ratio-y) / var(--aspect-ratio-x) * 100%);
+  }
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  &.is-full-height {
+    &::before, &::after {
+      content: none;
+    }
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+  &__bg {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+  &__content {
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// ================
+// text-spacer
+
+.component-spacer {
+  background: transparent;
+  border: 0;
+  color: transparent;
+  display: block;
+  height: var(--component-spacer-height);
+  margin: 0;
+  padding: 0;
+}
+
+// ================
+// text-container
+
+.component-container {
+  box-sizing: content-box;
+  max-width: var(--container-max-width, none);
+  padding: var(--container-padding-y, 0) var(--container-padding-x, 1rem);
+  &.is-width-xs {
+    --container-max-width: var(--screen-width-xs, 375px);
+  }
+  &.is-width-sm {
+    --container-max-width: var(--screen-width-sm, 640px);
+  }
+  &.is-width-md {
+    --container-max-width: var(--screen-width-md, 768px);
+  }
+  &.is-width-lg {
+    --container-max-width: var(--screen-width-lg, 1024px);
+  }
+  &.is-width-xl {
+    --container-max-width: var(--screen-width-xl, 1280px);
+  }
+  &.is-width-2xl {
+    --container-max-width: var(--screen-width-2xl, 1536px);
+  }
+}
+
+.component-container.is-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// ================
+// page-title
+
+.component-page-title {
+  background-color: var(--page-title-bg-color, transparent);
+  font-feature-settings: "palt";
+  margin: 1.5rem 0;
+  padding: var(--page-title-outer-padding, 1.5rem 1rem);
+}
+
+.component-page-title__main {
+  display: block;
+  font-size: var(--page-title-font-size, var(--font-size-2xl));
+  margin: 0 auto;
+  max-width: var(--page-title-max-width, var(--screen-width-lg));
+}
+
+// ================
+// text-content
+
+.component-text-content {
+  h2 {
+    font-size: var(--text-content-h2-font-size, 1.5rem);
+    line-height: var(--text-content-h2-line-height, 1.35);
+    margin: var(--text-content-h2-margin, 1.5rem 0);
+  }
+
+  h3 {
+    margin: var(--text-content-h3-margin, 1.5rem 0);
+  }
+
+  p,
+  figure,
+  ul,
+  ol,
+  dl,
+  blockquote {
+    margin: var(--text-content-margin, 1.5rem 0);
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: 1.125em;
+  }
+
+  ol {
+    list-style-type: decimal;
+    padding-left: 1.125em;
+  }
+
+  li {
+    & + li {
+      margin-top: .5em;
+    }
+    ul, ol {
+      margin-top: .5em;
+    }
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  table {
+    border-collapse: collapse;
+    font-size: 95%;
+    margin: var(--text-content-table-margin, 1.5rem 0);
+    width: 100%;
+  }
+
+  td, th {
+    border-color: var(--table-border-color, #ddd);
+    border-style: solid;
+    border-width: calc(1 * var(--rem-px, 1px)) 0;
+    padding: .75rem .25rem;
+    text-align: left;
+  }
+
+  thead th {
+    border-bottom: 2px solid currentColor;
+    border-top: 0;
+  }
+
+  caption {
+    text-align: left;
+  }
+}

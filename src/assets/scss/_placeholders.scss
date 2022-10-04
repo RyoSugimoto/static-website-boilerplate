@@ -7,3 +7,28 @@
   max-width: var(--wrapper-max-width);
   min-width: var(--wrapper-min-width);
 }
+
+%inline-stack {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  > * {
+    margin: var(--inline-stack-margin, 0);
+  }
+}
+
+%button {
+  background-color: var(--button-bg-color-default, transparent);
+  border-color: var(--button-border-color-default, currentColor);
+  border-radius: var(--button-border-radius, var(--border-radius-full, 9999px));
+  border-style: solid;
+  border-width: var(--button-border-width, calc(1 * var(--rem-px, .0625rem)));
+  box-sizing: border-box;
+  color: var(--button-text-color-default, inherit);
+  display: block;
+  font-size: var(--button-font-size, inherit);
+  font-weight: var(--button-font-weight, var(--font-weight-normal, 700));
+  line-height: var(--button-line-height, var(--line-height-none, 1));
+  padding: var(--button-padding, 1rem 1.5rem);
+  text-decoration: none;
+}

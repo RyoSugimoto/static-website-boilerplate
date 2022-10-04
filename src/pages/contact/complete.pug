@@ -5,10 +5,20 @@ block props
     root = '..'
     robots = 'noindex, nofollow'
     url += '/contact/complete.html'
-    title = `Inquiry completed - ${Config.name}`
+    title = `お問い合わせ完了 - ${Config.name}`
+    breadcrumbList = [
+      {
+        label: 'お問い合わせ',
+        url: `${root}/contact/`
+      },
+      {
+        label: 'お問い合わせ完了'
+      },
+    ]
 
 block head
 
 block main
-  h1 Inquiry completed
-  div
+  +page-title() お問い合わせ完了
+  +container('lg')
+    +text-content()

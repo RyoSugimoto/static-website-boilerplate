@@ -78,21 +78,33 @@ export const debounceImmediate = (fn: Function, time: number = 60) => {
   }
 }
 
+type EasingFunction = (number:number) => number
+
 /**
- *
- * @param {*} startTop
- * @param {*} anchorTop
- * @param {*} duration
- * @param {*} callback
+ * スムーズスクロールを実行する。
+ * @param {number} startTop 初期のスクロール位置
+ * @param {number} anchorTop 到達先のスクロール位置
+ * @param {number} duration デュレーション
+ * @param {function} easing スクロールのイージング関数
+ * @param {function} callback スクロール後に実行する関数
  */
-export const runSmoothScroll = (startTop, anchorTop, duration, callback: Function | null = null) => {
+export const runSmoothScroll = (
+  startTop:number,
+  anchorTop:number,
+  duration:number = 500,
+  easing:EasingFunction|null = null,
+  callback:Function|null = null
+) => {
   const startTime = new Date().getTime()
   const distance = anchorTop - startTop
   const animate = () => {
     const currentTime = new Date().getTime()
     const elapsed = currentTime - startTime
     const rate = elapsed / duration
-    const d = distance * (Math.sqrt(1 - Math.pow(rate - 1, 2)))
+    let d = rate
+    if ( typeof easing === 'function') {
+      d = distance * easing(rate)
+    }
     const scrollingElement = getScrollingElement()
     if (! scrollingElement || undefined === scrollingElement.scrollTop) {
       return

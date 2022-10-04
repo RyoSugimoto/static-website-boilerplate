@@ -14,5 +14,6 @@ block props
 block head
 
 block main
-  h1 お問い合わせ
-  div
+  +page-title() お問い合わせ
+  +container('lg')
+    +text-content()

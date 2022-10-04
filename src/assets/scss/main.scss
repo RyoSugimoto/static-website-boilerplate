@@ -3,43 +3,22 @@
 @use './reset';
 @use './variables';
 @use './fonts';
+
+// Libraries
+// 不要な場合は削除かコメントアウトを推奨。
 // @use './tailwindcss'
+@use './swiper';
+
+// Domestic
 @use './placeholders';
 @use './defaults';
 @use './layouts';
+@use './components';
 
-// Hero
+// Swiper
 
-.hero {
-  display: grid;
-  min-height: calc(var(--vh, 1vh) * 100);
-  place-content: center;
+.swiper-pagination {
+  bottom: auto;
+  left: auto;
   position: relative;
-  &__content {
-    height: 100%;
-    padding: 2rem 2rem;
-    position: relative;
-    text-align: center;
-    width: 100%;
-    z-index: 10;
-  }
-  &__copy {
-    font-size: 2.5rem;
-    font-weight: var(--font-weight-bold);
-    @include proportional;
-    line-height: 1.75;
-  }
-  &__bg {
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 0;
-    img {
-      height: 100%;
-      object-fit: cover;
-      width: 100%;
-    }
-  }
 }
