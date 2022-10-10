@@ -18,8 +18,8 @@
 }
 
 %button {
-  background-color: var(--button-bg-color-default, transparent);
-  border-color: var(--button-border-color-default, currentColor);
+  background-color: var(--button-bg-color, transparent);
+  border-color: var(--button-border-color, currentColor);
   border-radius: var(--button-border-radius, var(--border-radius-full, 9999px));
   border-style: solid;
   border-width: var(--button-border-width, calc(1 * var(--rem-px, .0625rem)));

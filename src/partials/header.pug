@@ -15,12 +15,7 @@ header#global-header.global-header
         +menu('main-menu-items')(class='header-navigation')
 
     if headerNavigationMode !== 'no-drawer'
-      button.global-header__drawer(data-drawer-trigger, aria-labeledby="drawer-trigger-label")
-        .global-header__drawer__icon
-          span
-        span.global-header__drawer__text#drawer-trigger-label
-          span.global-header__drawer__text__open メニュー
-          span.global-header__drawer__text__close 閉じる
+      include /partials/drawer-trigger.pug
 
   //- Drawer
   if (headerNavigationMode !== 'no-drawer' && headerNavigationMode !== 'only-drawer')

@@ -11,6 +11,7 @@ if (swiperElements.length) {
     const slidesPerViewValue = Number(element.getAttribute('data-swiper-slides-per-view'))
     const slidesPerView = isNaN(slidesPerViewValue) ? 1 : slidesPerViewValue
     const autoplayDelay = element.getAttribute('data-swiper-autoplay')
+    const centeredSlides = element.hasAttribute('data-swiper-centered')
 
     const settings = {
       modules: [Navigation, Pagination, Autoplay],
@@ -24,6 +25,7 @@ if (swiperElements.length) {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
+      centeredSlides
     }
 
     if (autoplayDelay) {

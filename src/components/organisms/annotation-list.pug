@@ -1,0 +1,17 @@
+mixin annotation-list(list=[], defaultMarker='※')
+  if (list.length !== 0)
+    ul.component-annotation-list&attributes(attributes)
+      each item in list
+        -
+          let marker = ''
+          let text = ''
+          if (Array.isArray(item)) {
+            marker = item[0]
+            text = item[1]
+          } else {
+            marker = defaultMarker
+            text = item
+          }
+        li.component-annotation-list__item
+          span.component-annotation-list__item__marker #{marker}
+          span.component-annotation-list__item__text !{text}

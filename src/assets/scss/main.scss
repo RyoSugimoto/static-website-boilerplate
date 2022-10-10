@@ -1,24 +1,4 @@
 @use './settings';
 @use './utilities' as *;
-@use './reset';
-@use './variables';
-@use './fonts';
-
-// Libraries
-// 不要な場合は削除かコメントアウトを推奨。
+@use './core';
 // @use './tailwindcss'
-@use './swiper';
-
-// Domestic
-@use './placeholders';
-@use './defaults';
-@use './layouts';
-@use './components';
-
-// Swiper
-
-.swiper-pagination {
-  bottom: auto;
-  left: auto;
-  position: relative;
-}

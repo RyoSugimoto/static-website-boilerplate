@@ -1,4 +1,4 @@
-mixin menu(slug='')
+mixin menu(slug='', icon='')
   -
     let items = getContent(`menu/${slug}.json`)
 
@@ -7,4 +7,6 @@ mixin menu(slug='')
       -
         const href = item.isRelative ? (root || '.') + item.url : item.url
       li.component-menu__item(data-menu-item-slug=`${item.slug}`)
+        if icon
+          +icon(icon)(class='component-menu__item__icon')
         +link(href)(target=`${item.isExternal ? '_blank' : '_self'}`, title=`${item.title || ''}`, aria-label=`${item.title || ''}`) #{item.label}

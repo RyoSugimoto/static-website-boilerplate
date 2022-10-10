@@ -11,11 +11,16 @@ export const isPhone = (): boolean => {
  * スクロールを制御する要素を取得する。
  * @returns {HTMLElement}
  */
-export const getScrollingElement = () => {
+export const getScrollingElement = ():HTMLElement => {
+  const documentObject:Document = document
   const ua = window.navigator.userAgent.toLowerCase();
-  if ('scrollingElement' in document) return document.scrollingElement;
-  if (ua.indexOf('webkit') > 0) return document.body;
-  return document.documentElement;
+  if ('scrollingElement' in document) {
+    return document.scrollingElement as HTMLElement;
+  }
+  if (ua.indexOf('webkit') > 0) {
+    return documentObject.body as HTMLBodyElement;
+  }
+  return documentObject.documentElement;
 };
 
 /**

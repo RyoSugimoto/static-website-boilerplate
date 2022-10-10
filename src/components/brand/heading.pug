@@ -1,19 +1,16 @@
-mixin heading(level=2, modifier='')
-  -
-    const baseClass = 'component-brand-heading'
-    const classes = `${baseClass}${modifier ? ` ${baseClass}--${modifier}` : ''}`
+mixin heading(level=2,)
   case level
-    when 1: h1(class=classes)&attributes(attributes)
+    when 1: h1.component-heading
       block
-    when 2: h2(class=classes)&attributes(attributes)
+    when 2: h2.component-heading
       block
-    when 3: h3(class=classes)&attributes(attributes)
+    when 3: h3.component-heading
       block
-    when 4: h4(class=classes)&attributes(attributes)
+    when 4: h4.component-heading
       block
-    when 5: h5(class=classes)&attributes(attributes)
+    when 5: h5.component-heading
       block
-    when 6: h6(class=classes)&attributes(attributes)
+    when 6: h6.component-heading
       block
-    default: h2(class=classes)&attributes(attributes)
+    default: h2.component-heading
       block
