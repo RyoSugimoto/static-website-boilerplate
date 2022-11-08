@@ -1,14 +1,16 @@
+// Windowsで游ゴシックをきれいに表示させるためにフォントファミリーを定義。
+
 @font-face {
-	font-family: 'MyYuGothicM';
+	font-family: 'WindowsYuGothicM';
 	font-weight: normal;
-	src: local('YuGothic-Medium'),
-	local('Yu Gothic Medium'),
-	local('YuGothic-Regular');
+	src: local('YuGothic-Medium'), // PostScript Name
+	local('Yu Gothic Medium'), // Full Name (for Google Chrome)
+	local('YuGothic-Regular'); // for Windows 8.1
 }
 
 @font-face {
-	font-family: 'MyYuGothicM';
+	font-family: 'WindowsYuGothicM';
 	font-weight: bold;
-	src: local('YuGothic-Bold'),
-	local('Yu Gothic');
+	src: local('YuGothic-Bold'), // PostScript Name
+	local('Yu Gothic'); // Full Name (for Google Chrome)
 }
