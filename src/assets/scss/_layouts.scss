@@ -197,30 +197,29 @@ $screen-width-md: 768px;
 .drawer {
   font-feature-settings: "palt";
   height: 100%;
-  opacity: 1;
   position: fixed;
   right: 0;
   top: 0;
-  transition: opacity .3s linear 0s;
   width: 100%;
   z-index: var(--drawer-z-index, 10000);
   &[hidden] {
     display: block;
-    opacity: 0;
     pointer-events: none;
   }
   &__overlay {
     backdrop-filter: blur(var(--drawer-overlay-blur, 2px));
     background-color: var(--drawer-overlay-color, rgba(0, 0, 0, .5));
     height: 100%;
+    opacity: 1;
     position: absolute;
     right: 0;
     top: 0;
-    transition: backdrop-filter .3s linear 0s;
+    transition: opacity .3s linear 0s;
     width: 100%;
     z-index: 0;
     [hidden] & {
       backdrop-filter: blur(0);
+      opacity: 0;
     }
   }
   &__body {
