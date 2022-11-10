@@ -7,10 +7,10 @@ link(rel="stylesheet", href=`${assetPath}/css/main.css?${new Date().getTime()}`)
 script(defer, src=`${assetPath}/js/main.js?${new Date().getTime()}`)
 
 //- Favicon
-link(ref='manifest', href=`${root}/manifest.webmanifest`)
-link(ref='icon', href=`${root}/favicon.ico`)
-link(ref='icon', href=`${root}/favicon.svg`, type='image/svg+xml', sizes='any')
-link(ref='apple-touch-icon', href=`${root}/apple-touch-icon.png`)
+link(rel='manifest', href=`${root}/manifest.webmanifest`)
+link(rel='icon', href=`${root}/favicon.ico`)
+link(rel='icon', href=`${root}/favicon.svg`, type='image/svg+xml', sizes='any')
+link(rel='apple-touch-icon', href=`${root}/apple-touch-icon.png`)
 
 //- OGP
 meta(property='og:url', content=`${Config.getUrl()}`)
