@@ -1,6 +1,27 @@
 @use './placeholders';
 
 // ================
+// frame
+
+.component-frame {
+  display: block;
+  height: 0;
+  padding: calc(var(--frame-y) / var(--frame-x) * 100%) 0 0 0;
+  position: relative;
+  width: 100%;
+  img, svg, video {
+    display: block;
+    height: 100%;
+    left: 0;
+    max-width: none;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+// ================
 // code
 
 .component-code {

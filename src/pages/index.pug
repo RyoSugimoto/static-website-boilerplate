@@ -9,6 +9,10 @@ block head
 
 block main
 
+  div(style='max-width: 480px;')
+    +frame()
+      +image('mountain.jpeg', '')(loading='lazy')
+
   +cover('full')
     +cover-bg
       +image('mountain.jpeg', '')(loading='lazy')
