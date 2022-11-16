@@ -82,7 +82,7 @@
   &::before {
     content: "";
     float: left;
-    padding-top: calc(var(--aspect-ratio-y) / var(--aspect-ratio-x) * 100%);
+    padding-top: calc(var(--cover-y) / var(--cover-x) * 100%);
   }
   &::after {
     content: "";

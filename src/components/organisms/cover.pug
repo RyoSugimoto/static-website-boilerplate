@@ -1,11 +1,11 @@
-mixin cover(height='full', src='', path='', nextGenFormats=true)
+mixin cover(height='full')
   -
     const hasAspectRatio = /\d+\/\d+/.test(height)
     if (hasAspectRatio) {
       const aspectRatioArray = height.split('/')
       attributes.style = `
-        --aspect-ratio-x: ${aspectRatioArray[0]};
-        --aspect-ratio-y: ${aspectRatioArray[1]};
+        --cover-x: ${aspectRatioArray[0]};
+        --cover-y: ${aspectRatioArray[1]};
       `
     }
   .component-cover(class=(height === 'full') ? 'is-full-height' : null)&attributes(attributes)
